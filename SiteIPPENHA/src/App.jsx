@@ -143,9 +143,45 @@ function App() {
 
         {/* Seção seja bem vindo */}
 
-        <section className="w-full bg-[#F0F2E4]">
-          <div className="max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 bg-red-500">
-            <div className="flex flex-col items-center text-center p-8">
+        <section className="w-full bg-[#466a63] ">
+          <div className="flex max-w-7xl mx-auto gap-30 items-center px-6">
+            <div>
+              <iframe
+                width="525"
+                height="315"
+                src="https://www.youtube.com/embed/bEMX8tceKR0?si=Ht1gLjlr61SpxsUU"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div>
+              <h1>SEJA BEM VINDO À IPPENHA!</h1>
+              <p>
+                Na IP Penha, você encontrará uma igreja acolhedora que pulsa com
+                a vida de Cristo em cada detalhe. Somos uma igreja de gerações e
+                nosso compromisso é criar um ambiente onde as famílias se sintam
+                nutridas, onde o ensino da fé bíblica seja o alicerce para uma
+                vida de propósito e significado. Somos uma comunidade viva que
+                busca refletir a glória de Deus através de relacionamentos
+                autênticos e de um acolhimento que abraça a todos.
+              </p>
+              <p>
+                
+                Amamos o ensino bíblico profundo e vivemos essa verdade de forma
+                contemporânea, com cultos vibrantes que celebram a soberania de
+                Deus com alegria e fervor.
+              </p>
+              <p>
+                Entendemos que o nosso chamado é transbordar o amor de Cristo
+                servindo ao mundo com integridade e paixão. Ser missional é o
+                que nos identifica, unindo a sã doutrina ao serviço na prática.
+                Venha caminhar conosco e descobrir como a fé antiga pode ser
+                surpreendentemente atual e transformadora para você e sua
+                família!
+              </p>
             </div>
           </div>
         </section>
