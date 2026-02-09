@@ -13,3 +13,8 @@
     transition: none;
   }
 }
+
+iframe {
+  border: none;
+  border-radius: 40px;
+}
