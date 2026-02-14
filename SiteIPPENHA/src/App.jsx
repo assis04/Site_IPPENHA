@@ -1,7 +1,13 @@
-import { InstagramLogoIcon, YoutubeLogoIcon } from "@phosphor-icons/react";
+import {
+  InstagramLogoIcon,
+  YoutubeLogoIcon,
+  MapTrifoldIcon,
+  PlayIcon,
+} from "@phosphor-icons/react";
 import IPPENHA from "./assets/IPPENHA.svg";
 import logo from "./assets/logo.svg";
 import ConexaoComDeus from "./assets/ConexaoComDeus.svg";
+import ConexaoComDeusBlack from "./assets/ConexaoComDeusBlack.svg";
 import PenhaKids from "./assets/PenhaKids.svg";
 import Hebron from "./assets/Hebron.svg";
 import QPalavra from "./assets/QPalavra.svg";
@@ -66,45 +72,43 @@ function App() {
         </nav>
       </header>
 
-      <main className="w-full bg-[#F0F2E4]">
+      <main className="w-full bg-white">
         {/* HERO */}
 
-        <section className=" relative w-full min-h-[90vh] flex items-center bg-[url('../assets/Fundo.svg')] bg-no-repeat bg-top bg-cover">
+        <section className="w-full min-h-[90vh] flex items-center bg-[url('../assets/Fundo.svg')] bg-no-repeat bg-top bg-cover">
           {/* CONTEÚDO */}
 
-          <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className=" max-w-7xl m-auto px-28 grid grid-cols-1 lg:grid-cols-2 items-center  ">
             {/* Texto */}
-
-            <div className="flex flex-col gap-6 max-w-lg lg:pl-30">
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight ">
+            <div className="flex flex-col gap-6 lg:w-90 ">
+              <h1 className="text-xl lg:text-3xl font-bold text-gray-900 leading-tight ">
                 Alcançados pela Graça, Enviados para Servir.
               </h1>
-
-              <p className="text-xl text-white text-justify">
+              <p className="text-xl text-white">
                 Na Igreja Presbiteriana da Penha, vivemos a alegria de pertencer
                 a Deus. Somos uma comunidade de fé reformada que ama a Bíblia e
                 se dedica com fervor à missão de proclamar Cristo em nosso
                 bairro e em todo o mundo. Venha ser parte de uma família que
                 acolhe e transforma.
               </p>
-
               <div className="flex gap-5 justify-around">
-                <button className="bg-[#0F715C] text-white px-6 py-3 rounded-full">
+                <button className="flex items-center justify-center gap-2 bg-[#0F715C] text-white text-sm w-55 h-9 px-3 rounded-full">
                   Venha nos visitar
+                  <MapTrifoldIcon size={20} />
                 </button>
-
-                <button className="border border-white text-white px-6 py-3 rounded-full">
+                <button className="flex items-center justify-center gap-2 border border-white text-white text-sm w-55 h-9 px-3 rounded-full">
                   Assistir Online
+                  <PlayIcon size={20} weight="fill" />
                 </button>
               </div>
             </div>
 
             {/* Imagem */}
-            <div className="flex justify-center">
+            <div className=" flex  justify-end ">
               <img
                 src={IPPENHA}
-                alt="Logo IPPENHA"
-                className="w-full max-w-105"
+                alt="Imagem da igreja IPPENHA"
+                className="max-w-150"
               />
             </div>
           </div>
@@ -113,7 +117,7 @@ function App() {
         {/* Seção Cards */}
 
         <section className="w-full bg-white py-16">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 ">
             <div className="bg-[#3C6F48] text-white p-8 flex flex-col rounded-3xl text-center justify-center">
               <h3 className="font-bold text-2xl">Cultos Dominicais</h3>
               <p>9h | 18h Culto Hispano 11h</p>
@@ -143,20 +147,73 @@ function App() {
 
         {/* Seção seja bem vindo */}
 
-        <section className="w-full bg-[#F0F2E4]">
-          <div className="max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 bg-red-500">
-            <div className="flex flex-col items-center text-center p-8">
+        <section className="w-full bg-[#F0F2E4] ">
+          <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center ">
+            {/* Container do Vídeo */}
+            <div className="w-full lg:w-1/2 aspect-video">
+              <iframe
+                src="https://www.youtube.com/embed/bEMX8tceKR0"
+                title="Vídeo de Boas Vindas"
+                loading="lazy"
+                className="w-full h-full rounded-2xl shadow-2xl border-none"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className=" flex flex-col gap-3 py-6 lg:w-150 text-black px-6">
+              <h2 className="text-4xl font-bold text-black">
+                SEJA BEM VINDO À IPPENHA!
+              </h2>
+              <p className="text-sm text-black leading-relaxed">
+                Na IP Penha, você encontrará uma igreja acolhedora que pulsa com
+                a vida de Cristo em cada detalhe. Somos uma igreja de gerações e
+                nosso compromisso é criar um ambiente onde as famílias se sintam
+                nutridas, onde o ensino da fé bíblica seja o alicerce para uma
+                vida de propósito e significado. Somos uma comunidade viva que
+                busca refletir a glória de Deus através de relacionamentos
+                autênticos e de um acolhimento que abraça a todos.
+              </p>
+              <p className="text-sm text-black leading-relaxed">
+                Amamos o ensino bíblico profundo e vivemos essa verdade de forma
+                contemporânea, com cultos vibrantes que celebram a soberania de
+                Deus com alegria e fervor.
+              </p>
+              <p className="text-sm text-black leading-relaxed">
+                Entendemos que o nosso chamado é transbordar o amor de Cristo
+                servindo ao mundo com integridade e paixão. Ser missional é o
+                que nos identifica, unindo a sã doutrina ao serviço na prática.
+                Venha caminhar conosco e descobrir como a fé antiga pode ser
+                surpreendentemente atual e transformadora para você e sua
+                família!
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Ministerios */}
+
+        <section className="w-full bg-white">
+          <div className="max-w-7xl mx-auto px-6 pt-6 items-center ">
+            <h2 className="text-2xl font-bold text-black text-center">
+              Ministérios
+            </h2>
+            <div className="flex gap-16 justify-center py-8">
+              <img src={ConexaoComDeusBlack} alt="Conexão com Deus" />
+              <img src={EBT} alt="EBT" />
+              <img src={Hebron} alt="Hebron" />
+              <img src={QPalavra} alt="Q Palavra" />
+              <img src={PenhaKids} alt="Penha Kids" />
+              <img src={Integraçao} alt="Integração" />
             </div>
           </div>
         </section>
 
         {/* Seção Instagram */}
         <section
-          className="lg:w-full bg-[#F0F2E4] py-12 lg:py-16 px-4 lg:px-8"
+          className="lg:w-full min-h-[90vh] bg-white  bg-[url('../assets/bgInstagram.svg')] py-12 lg:py-16 px-4 lg:px-8 bg-no-repeat bg-top bg-cover"
           aria-labelledby="instagram-section-heading"
           aria-label="Feed de posts do Instagram"
         >
-          <div className="w-full max-w-248.75 mx-auto">
+          <div className="max-w-7xl px-6 mx-auto">
             <h2
               id="instagram-section-heading"
               className="text-2xl lg:text-3xl font-bold text-[#000000] mb-8 text-center flex items-center justify-center gap-2"
