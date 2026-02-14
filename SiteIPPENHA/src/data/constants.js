@@ -12,7 +12,7 @@ import { isSafeUrl } from "../utils/safeUrl";
 export const NAV_LINKS = [
   { label: "Igreja", href: "#" },
   { label: "Ministérios", href: "#" },
-  { label: "Agenda", href: "#" },
+  { label: "Agenda", href: "/agenda" },
   { label: "Estudos", href: "#" },
   { label: "Ação Social", href: "#" },
   { label: "Baixar o App", href: "#" },
