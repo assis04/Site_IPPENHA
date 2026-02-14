@@ -13,20 +13,11 @@ import Hebron from "./assets/Hebron.svg";
 import QPalavra from "./assets/QPalavra.svg";
 import Integraçao from "./assets/Integraçao.svg";
 import EBT from "./assets/EBT.svg";
-import { isSafeUrl } from "./utils/safeUrl";
-import { useInstagramFeed } from "./hooks/useInstagramFeed";
-
-const INSTAGRAM_PROFILE_URL_RAW =
-  import.meta.env.VITE_INSTAGRAM_PROFILE_URL ||
-  "https://www.instagram.com/ippenha/";
-const INSTAGRAM_PROFILE_URL = isSafeUrl(INSTAGRAM_PROFILE_URL_RAW)
-  ? INSTAGRAM_PROFILE_URL_RAW
-  : "https://www.instagram.com/ippenha/";
+import PastorsSection from "./components/PastorsSection";
+import InstagramSection from "./components/InstagramSection";
+import Footer from "./components/Footer";
 
 function App() {
-  const { posts, loading, error, displayedCount, setDisplayedCount, retry } =
-    useInstagramFeed();
-
   return (
     <>
       <header className="w-full bg-white">
@@ -207,150 +198,12 @@ function App() {
           </div>
         </section>
 
-        {/* Seção Instagram */}
-        <section
-          className="lg:w-full min-h-[90vh] bg-white  bg-[url('../assets/bgInstagram.svg')] py-12 lg:py-16 px-4 lg:px-8 bg-no-repeat bg-top bg-cover"
-          aria-labelledby="instagram-section-heading"
-          aria-label="Feed de posts do Instagram"
-        >
-          <div className="max-w-7xl px-6 mx-auto">
-            <h2
-              id="instagram-section-heading"
-              className="text-2xl lg:text-3xl font-bold text-[#000000] mb-8 text-center flex items-center justify-center gap-2"
-            >
-              <a
-                href={INSTAGRAM_PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2 rounded"
-                aria-label="Abrir perfil do Instagram IPPENHA no Instagram (abre em nova aba)"
-              >
-                <InstagramLogoIcon size={32} weight="fill" aria-hidden="true" />
-                Instagram IPPENHA
-              </a>
-            </h2>
-            {loading && (
-              <p
-                className="text-center text-gray-600 py-12"
-                role="status"
-                aria-live="polite"
-              >
-                Carregando posts...
-              </p>
-            )}
-            {error && (
-              <div
-                className="text-center py-12"
-                role="alert"
-                aria-live="assertive"
-              >
-                <p className="text-red-600 mb-4">{error}</p>
-                <button
-                  type="button"
-                  onClick={retry}
-                  className="cursor-pointer bg-transparent text-black border border-black px-6 py-2 rounded-3xl font-medium hover:bg-black/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
-                  aria-label="Tentar carregar o feed do Instagram novamente"
-                >
-                  Tentar novamente
-                </button>
-              </div>
-            )}
-            {!loading && !error && posts.length > 0 && (
-              <>
-                {/* Container do grid */}
-                <div className="w-full min-h-70 sm:min-h-100 lg:min-h-161 rounded-lg overflow-hidden">
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-11.5 p-2 sm:p-3 lg:px-0 lg:py-4">
-                    {posts.slice(0, displayedCount).map((post, index) => {
-                      const postLabel = post.caption
-                        ? `Ver post ${index + 1} no Instagram: ${post.caption.slice(0, 100)}${post.caption.length > 100 ? "…" : ""}`
-                        : `Ver post ${index + 1} no Instagram`;
-                      return (
-                        <a
-                          key={post.id}
-                          href={post.permalink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group block aspect-square w-full rounded overflow-hidden bg-gray-200 shadow-md hover:shadow-lg transition-all relative focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
-                          aria-label={postLabel}
-                        >
-                          {post.media_type === "VIDEO" ? (
-                            <video
-                              src={post.media_url}
-                              poster={post.thumbnail_url}
-                              className="w-full h-full object-cover"
-                              autoPlay
-                              muted
-                              playsInline
-                              loop
-                              aria-hidden="true"
-                              tabIndex={-1}
-                            />
-                          ) : (
-                            <img
-                              src={post.thumbnail_url || post.media_url}
-                              alt=""
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                            />
-                          )}
-                          {/* Overlay no hover */}
-                          <div
-                            className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 flex items-center justify-center p-3 overflow-hidden motion-reduce:transition-none"
-                            aria-hidden="true"
-                          >
-                            <p
-                              className="instagram-caption text-white text-lg sm:text-xl lg:text-2xl text-center font-['Crimson_Text',serif] w-full"
-                              style={{ fontFamily: "'Crimson Text', serif" }}
-                            >
-                              {post.caption
-                                ? post.caption.trim()
-                                : "Ver no Instagram"}
-                            </p>
-                          </div>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div className="flex justify-center mt-8">
-                  {displayedCount < posts.length ? (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setDisplayedCount((n) => Math.min(n + 6, posts.length))
-                      }
-                      className="cursor-pointer bg-transparent text-black border border-black px-8 py-3 rounded-3xl font-medium hover:bg-black/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
-                      aria-label="Carregar mais 6 posts do Instagram"
-                    >
-                      Ver mais
-                    </button>
-                  ) : (
-                    <a
-                      href={INSTAGRAM_PROFILE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cursor-pointer bg-transparent text-black border border-black px-8 py-3 rounded-3xl font-medium hover:bg-black/5 transition-colors inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
-                      aria-label="Ver perfil completo no Instagram (abre em nova aba)"
-                    >
-                      <InstagramLogoIcon
-                        size={24}
-                        weight="fill"
-                        aria-hidden="true"
-                      />
-                      Ver no Instagram
-                    </a>
-                  )}
-                </div>
-              </>
-            )}
-            {!loading && !error && posts.length === 0 && (
-              <p className="text-center text-gray-600 py-12" role="status">
-                Nenhum post encontrado.
-              </p>
-            )}
-          </div>
-        </section>
+        <PastorsSection />
+
+        <InstagramSection className="mt-20" />
       </main>
+
+      <Footer />
     </>
   );
 }
