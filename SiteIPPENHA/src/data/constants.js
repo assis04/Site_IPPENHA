@@ -121,14 +121,14 @@ export const INSTAGRAM_PROFILE_URL = isSafeUrl(INSTAGRAM_PROFILE_URL_RAW)
 
 /* ─── Dados dos pastores ─── */
 export const PASTORS = [
-  { name: "Amauri Oliveira", role: "Pastor presidente", slug: "pastor-1", image: pastorAmauri },
-  { name: "Fábio Carvalho", role: "Pastor auxiliar", slug: "pastor-2", image: pastorFabio },
-  { name: "Carlos Henrique", role: "Pastor auxiliar", slug: "pastor-3", image: pastorCarlosHenrique },
-  { name: "Carlos Lima", role: "Pastor auxiliar", slug: "pastor-4", image: pastorCarlosLima },
-  { name: "Paulo Castro", role: "Pastor auxiliar", slug: "pastor-5", image: pastorPaulo },
-  { name: "Rogério C. Chaves", role: "Pastor auxiliar", slug: "pastor-6", image: pastorRogerio },
-  { name: "Cornélio Castro", role: "Pastor auxiliar", slug: "pastor-7", image: pastorCornelio },
-  { name: "Filipe Checon", role: "Pastor auxiliar", slug: "pastor-8", image: pastorFilipe },
+  { name: "Amauri Oliveira", role: "Pastor presidente", slug: "pastor-amauri-oliveira", image: pastorAmauri, bio: "" },
+  { name: "Fábio Carvalho", role: "Pastor auxiliar", slug: "pastor-fabio-carvalho", image: pastorFabio, bio: "" },
+  { name: "Carlos Henrique", role: "Pastor auxiliar", slug: "pastor-carlos-henrique", image: pastorCarlosHenrique, bio: "" },
+  { name: "Carlos Lima", role: "Pastor auxiliar", slug: "pastor-carlos-lima", image: pastorCarlosLima, bio: "" },
+  { name: "Paulo Castro", role: "Pastor auxiliar", slug: "pastor-paulo-castro", image: pastorPaulo, bio: "" },
+  { name: "Rogério C. Chaves", role: "Pastor auxiliar", slug: "pastor-rogerio-c-chaves", image: pastorRogerio, bio: "" },
+  { name: "Cornélio Castro", role: "Pastor auxiliar", slug: "pastor-cornelio-castro", image: pastorCornelio, bio: "" },
+  { name: "Filipe Checon", role: "Pastor auxiliar", slug: "pastor-filipe-checon", image: pastorFilipe, bio: "" },
 ];
 
 /* ─── Horários dos cultos ─── */

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { PASTORS } from "../data/constants";
 
 /**
@@ -20,9 +21,9 @@ export default function PastorsSection() {
 
         <div className="grid grid-cols-4 gap-4 sm:gap-5 lg:gap-8 justify-items-center">
           {PASTORS.map((pastor) => (
-            <a
+            <Link
               key={pastor.slug}
-              href={`/pastores/${pastor.slug}`}
+              to={`/pastores/${pastor.slug}`}
               className="flex flex-col items-center w-full rounded-[34%] hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2 focus:ring-offset-[#E0F2CF]"
               aria-label={`Ver perfil de ${pastor.name}, ${pastor.role}`}
             >
@@ -41,7 +42,7 @@ export default function PastorsSection() {
               <p className="mt-0.5 text-center font-normal leading-tight text-black text-[10px] sm:text-xs lg:text-[13px]">
                 {pastor.role}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -3,6 +3,7 @@
  *
  * Props:
  *  - title       (string)  — título destacado da página
+ *  - subtitle    (string)  — subtítulo (ex.: cargo do pastor) (opcional)
  *  - image       (string)  — URL da imagem (opcional)
  *  - imageAlt    (string)  — alt-text da imagem
  *  - highlight   (string)  — frase de destaque (opcional)
@@ -10,6 +11,7 @@
  */
 export default function ContentPageLayout({
   title,
+  subtitle,
   image,
   imageAlt = "",
   highlight,
@@ -81,6 +83,21 @@ export default function ContentPageLayout({
           >
             {title}
           </h1>
+
+          {subtitle && (
+            <p
+              className="text-[#216F48] mt-2"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 400,
+                fontSize: "20px",
+                lineHeight: "1.6",
+                letterSpacing: "0.015em",
+              }}
+            >
+              {subtitle}
+            </p>
+          )}
 
           {/* Espaçador — no desktop empurra o texto para após o fundo inferior da forma verde */}
           <div className="h-6 lg:h-[200px]" aria-hidden="true" />
