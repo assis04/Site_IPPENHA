@@ -20,9 +20,7 @@ export default function ContentPageLayout({
   return (
     <main className="w-full bg-white font-[Poppins,sans-serif] overflow-x-hidden">
       <section className="relative max-w-7xl mx-auto">
-        {/* ── Forma decorativa esquerda (verde escuro) ──
-             left: -260px  → apenas ~67 px visíveis na borda esquerda
-             top:  -187px  → subiu 40 px em relação ao posicionamento original (-147) */}
+        {/* ── Forma decorativa esquerda (verde escuro) ── */}
         <div
           className="absolute hidden lg:block z-0"
           style={{
@@ -36,8 +34,7 @@ export default function ContentPageLayout({
           aria-hidden="true"
         />
 
-        {/* ── Forma decorativa direita (verde claro, atrás da foto) ──
-             top: -92px → subiu 40 px em relação ao posicionamento original (-52) */}
+        {/* ── Forma decorativa direita (verde claro, atrás da foto) ── */}
         {image && (
           <div
             className="absolute hidden lg:block z-0"

@@ -17,7 +17,6 @@ import {
 
 /**
  * Footer do site.
- * Estrutura: onda SVG (Figma) → conteúdo 4-colunas → barra de copyright.
  */
 export default function Footer() {
   return (
