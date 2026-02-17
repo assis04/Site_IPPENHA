@@ -8,6 +8,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  server: {
+    // Proxy para o WordPress local (LocalWP).
+    proxy: {
+      '/wp-content/calendar-api': {
+        target: 'http://ippenha.local',
+        changeOrigin: true,
+      },
+    },
+  },
 })
-
-
