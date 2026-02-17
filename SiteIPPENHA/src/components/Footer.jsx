@@ -6,6 +6,7 @@ import {
   Phone,
   MapPin,
 } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import {
   NAV_LINKS,
@@ -16,7 +17,6 @@ import {
 
 /**
  * Footer do site.
- * Estrutura: onda SVG (Figma) → conteúdo 4-colunas → barra de copyright.
  */
 export default function Footer() {
   return (
@@ -98,12 +98,21 @@ export default function Footer() {
               <ul className="flex flex-col gap-2.5">
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-white/85 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </a>
+                    {link.href.startsWith("/") ? (
+                      <Link
+                        to={link.href}
+                        className="text-sm text-white/85 hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-sm text-white/85 hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

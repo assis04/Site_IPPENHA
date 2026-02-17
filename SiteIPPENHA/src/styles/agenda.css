@@ -1,0 +1,142 @@
+/* ─── Calendário ─── */
+.calendar-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ─── Modal de evento ─── */
+.fc-modal-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.44);
+  transition: background 0.3s;
+}
+
+.fc-modal-bg--active {
+  background: rgba(0, 0, 0, 0.68);
+}
+
+.fc-modal-content {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.19);
+  max-width: 440px;
+  width: 98vw;
+  max-height: 94vh;
+  min-height: 120px;
+  position: relative;
+  padding: 28px 24px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(50px) scale(0.9);
+  transition: opacity 0.3s, transform 0.3s;
+  overflow-y: auto;
+  margin: 32px;
+}
+
+.fc-modal-content--active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.fc-modal-close {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  font-size: 2.1em;
+  color: #333;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 0.2s;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+.fc-modal-close:hover {
+  color: #04a37e;
+}
+
+.fc-modal-title {
+  font-size: 1.32em;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  line-height: 1.2;
+  padding-right: 32px;
+}
+
+.fc-modal-time {
+  color: #666;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.fc-modal-extra {
+  margin-top: 12px;
+}
+
+.fc-modal-img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  object-fit: contain;
+  display: block;
+  background: #fafafa;
+  max-height: 38vh;
+  height: auto;
+}
+
+.fc-modal-section {
+  margin-bottom: 15px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #eee;
+  font-size: 1em;
+  color: #222;
+}
+
+.fc-modal-btn {
+  display: inline-block;
+  background: #04a37e;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 1px 8px rgba(4, 163, 126, 0.13);
+  transition: background 0.2s;
+  font-size: 1.08em;
+}
+
+.fc-modal-btn:hover {
+  background: #02735a;
+}
+
+/* ─── Responsivo ─── */
+@media (max-width: 480px) {
+  .fc-modal-content {
+    max-width: 96vw;
+    margin: 12px;
+    padding: 18px 10px 22px 10px;
+    min-height: 100px;
+  }
+
+  .fc-modal-title {
+    font-size: 1em;
+  }
+
+  .fc-modal-btn {
+    padding: 8px 10vw;
+    font-size: 1em;
+  }
+
+  .fc-modal-img {
+    max-height: 28vh;
+  }
+}
