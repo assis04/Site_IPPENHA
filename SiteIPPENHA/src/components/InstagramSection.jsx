@@ -20,6 +20,7 @@ export default function InstagramSection({ className = "" }) {
         <h2
           id="instagram-heading"
           className="text-2xl lg:text-3xl font-bold text-black mb-8 text-center flex items-center justify-center gap-2"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
           <a
             href={INSTAGRAM_PROFILE_URL}
@@ -141,15 +142,12 @@ function PostCard({ post, index }) {
 
       {/* Overlay no hover */}
       <div
-        className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 flex items-center justify-center p-3 overflow-hidden motion-reduce:transition-none"
+        className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 flex items-center justify-center p-2 sm:p-3 lg:p-4 overflow-hidden motion-reduce:transition-none"
         aria-hidden="true"
       >
-        <p
-          className="text-white text-lg sm:text-xl lg:text-2xl text-center w-full"
-          style={{ fontFamily: "'Crimson Text', serif" }}
-        >
+        <span className="instagram-caption text-white text-[clamp(0.55rem,2.2vw,1.4rem)] leading-snug text-center w-full">
           {post.caption ? post.caption.trim() : "Ver no Instagram"}
-        </p>
+        </span>
       </div>
     </a>
   );

@@ -10,12 +10,89 @@ import { isSafeUrl } from "../utils/safeUrl";
 
 /* ─── Links de navegação (compartilhados entre header e footer) ─── */
 export const NAV_LINKS = [
-  { label: "Igreja", href: "#" },
-  { label: "Ministérios", href: "#" },
-  { label: "Agenda", href: "/agenda" },
-  { label: "Estudos", href: "#" },
-  { label: "Ação Social", href: "#" },
-  { label: "Baixar o App", href: "#" },
+  {
+    label: "Igreja",
+    href: "#",
+    children: [
+      { label: "70 anos", href: "#" },
+      { label: "Quem somos", href: "/quem-somos" },
+      { label: "Doutrina", href: "#" },
+      { label: "Confissões de fé", href: "#" },
+      {
+        label: "Cultos",
+        href: "#",
+        children: [
+          { label: "Dominicais", href: "#" },
+          { label: "Conexão com Deus", href: "#" },
+          { label: "Tarde da Esperança", href: "#" },
+        ],
+      },
+      { label: "SOS", href: "#" },
+      { label: "Movimento", href: "#" },
+      { label: "Oficiais", href: "#" },
+    ],
+  },
+  {
+    label: "Ministérios",
+    href: "#",
+    children: [
+      { label: "Integração", href: "#" },
+      { label: "Música", href: "#" },
+      { label: "Coral Perfeito Louvor", href: "#" },
+      { label: "Coral Jovem", href: "#" },
+      { label: "Coral João Calvino", href: "#" },
+      { label: "Orquestra IPP", href: "#" },
+      { label: "Louvor", href: "#" },
+      { label: "Jovens +", href: "#" },
+      { label: "GAM", href: "#" },
+      { label: "Lar Cristão", href: "#" },
+      { label: "MAD", href: "#" },
+      { label: "Terceira Idade", href: "#" },
+      { label: "Faça Parte", href: "#" },
+    ],
+  },
+  {
+    label: "Sociedades Internas",
+    href: "#",
+    children: [
+      { label: "UCP — Penha Kids", href: "#" },
+      { label: "UPA — SOS", href: "#" },
+      { label: "UMP — Movimento", href: "#" },
+      { label: "SAF", href: "#" },
+      { label: "UPH", href: "#" },
+    ],
+  },
+  {
+    label: "Agenda",
+    href: "/agenda",
+    children: [
+      { label: "Eventos", href: "/agenda" },
+    ],
+  },
+  {
+    label: "Estudos Bíblicos",
+    href: "#",
+    children: [
+      { label: "Pequenos Grupos", href: "#" },
+      { label: "EBT", href: "#" },
+      { label: "ETEP", href: "#" },
+      { label: "Que Palavra", href: "#" },
+    ],
+  },
+  {
+    label: "Ação Social",
+    href: "#",
+    children: [
+      { label: "Hebron", href: "#" },
+      { label: "Projeto Esperança", href: "#" },
+      { label: "Penha Care", href: "#" },
+      { label: "P.A.C.A.", href: "#" },
+    ],
+  },
+  {
+    label: "Baixe o App",
+    href: "#",
+  },
 ];
 
 /* ─── Informações de contato ─── */
@@ -24,7 +101,7 @@ export const CONTACT = {
   city: "São Paulo — SP, 03607-010",
   phone: "(011) 2641-7654",
   phoneHref: "tel:+551126417654",
-  email: "contato@ippenha.org.br",
+  email: "contato@ippenha.com.br",
   mapsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=R.+Maj.+Rudge,+145+-+Penha+de+Franca,+Sao+Paulo+-+SP,+03607-010",
 };

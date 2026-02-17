@@ -1,1 +1,50 @@
 @import "tailwindcss";
+
+/* ─── Dropdown desktop: animação de entrada ─── */
+.animate-dropdown {
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Instagram caption: trunca pelo tamanho da div com reticências ─── */
+.instagram-caption {
+  font-family: "Poppins", sans-serif;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  /* Quantidade de linhas calculada pela altura disponível */
+  -webkit-line-clamp: var(--caption-lines, 6);
+}
+
+/* Ajusta o número de linhas visíveis conforme o tamanho da tela */
+@media (max-width: 480px) {
+  .instagram-caption {
+    --caption-lines: 3;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .instagram-caption {
+    --caption-lines: 5;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .instagram-caption {
+    --caption-lines: 7;
+  }
+}
+@media (min-width: 1025px) {
+  .instagram-caption {
+    --caption-lines: 9;
+  }
+}
