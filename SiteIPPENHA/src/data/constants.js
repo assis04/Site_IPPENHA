@@ -16,8 +16,11 @@ export const NAV_LINKS = [
     children: [
       { label: "70 anos", href: "#" },
       { label: "Quem somos", href: "/quem-somos" },
-      { label: "Doutrina", href: "#" },
-      { label: "Confissões de fé", href: "#" },
+      { label: "Doutrina", href: "#",
+        children: [
+          { label: "Confissões de fé", href: "/confissoes-de-fe" },
+        ],
+      },
       {
         label: "Cultos",
         href: "#",

@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import AgendaPage from "./pages/AgendaPage";
 import QuemSomosPage from "./pages/QuemSomosPage";
 import PastorPage from "./pages/PastorPage";
+import ConfissoesPage from "./pages/ConfissoesPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/agenda" element={<AgendaPage />} />
         <Route path="/quem-somos" element={<QuemSomosPage />} />
+        <Route path="/confissoes-de-fe" element={<ConfissoesPage />} />
         <Route path="/pastores/:slug" element={<PastorPage />} />
       </Routes>
       <Footer />
