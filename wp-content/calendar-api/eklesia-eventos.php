@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // ── Token de integração Eklesia ──
-$token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOb21lVXN1YXJpbyI6IiIsIkJhbmNvIjoiRUszMDM4IiwiTmFtZUlkZW50aWZpZXIiOiIzMSIsIlNpZCI6ImMyZDQ0Njc2LTliMjEtNGY1MC05MmFmLWFlZTNlMjIyOGFlZiIsIlBlcm1pc3NvZXMiOiItMjAwMCwtNTAwMCIsIm5iZiI6MTc3MDgzNDY3MCwiZXhwIjoyMDg2MzY3NTMwLCJpc3MiOiJ3ZWJBcGkiLCJhdWQiOiJ3ZWJBcGkifQ.ZpR4Fo06zc4qubKISLtvKTJJPQxmZ4jiqPPv5l79PoQ";
+// Definido no wp-config.php: define('EKLESIA_TOKEN', 'seu-token-aqui');
+$token = defined('EKLESIA_TOKEN') ? EKLESIA_TOKEN : '';
 
 $eklesia_base = "https://gestaoweb.eklesiaonline.com.br/webapi/api";
 
