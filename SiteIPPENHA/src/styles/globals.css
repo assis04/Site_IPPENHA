@@ -1,4 +1,41 @@
+
 @import "tailwindcss";
+
+/* 1. O container pai precisa cortar o que sobra */
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  ); /* Isso cria um efeito de fade nas pontas, melhora muito a sensação */
+}
+
+/* 2. O trilho que se move */
+.carousel-track {
+  display: flex;
+  width: max-content; /* Garante que as fotos fiquem em uma linha infinita */
+  animation: infiniteScroll 30s linear infinite;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Move exatamente METADE do conteúdo total (a primeira lista) */
+    transform: translateX(-50%);
+  }
+}
+
+/* 3. Pausa suave ao passar o mouse */
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
 
 /* ─── Dropdown desktop: animação de entrada ─── */
 .animate-dropdown {
