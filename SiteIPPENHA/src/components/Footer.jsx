@@ -6,7 +6,7 @@ import {
   Phone,
   MapPin,
 } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import {
   NAV_LINKS,
@@ -19,9 +19,12 @@ import {
  * Footer do site.
  */
 export default function Footer() {
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
+
   return (
     <footer
-      className="w-full text-white relative bg-[#F0F2E4] font-[Poppins,sans-serif]"
+      className={`w-full text-white relative font-[Poppins,sans-serif] ${isHome ? "bg-[#F0F2E4]" : "bg-white"}`}
     >
       {/* Onda curva do topo — path extraído do Figma */}
       <div className="w-full overflow-hidden leading-[0] -mb-px">
