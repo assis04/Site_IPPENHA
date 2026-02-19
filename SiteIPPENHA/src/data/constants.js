@@ -65,9 +65,7 @@ export const NAV_LINKS = [
   {
     label: "Agenda",
     href: "/agenda",
-    children: [
-      { label: "Eventos", href: "/agenda" },
-    ],
+    children: [{ label: "Eventos", href: "/agenda" }],
   },
   {
     label: "Estudos Bíblicos",
@@ -91,7 +89,7 @@ export const NAV_LINKS = [
   },
   {
     label: "Baixe o App",
-    href: "#",
+    href: "/baixe-app",
   },
 ];
 
@@ -110,6 +108,13 @@ export const CONTACT = {
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/ippenha/",
   youtube: "https://www.youtube.com/@ippenha",
+  youtubeCultos: "https://www.youtube.com/@ippenhacultos",
+};
+
+/* ─── Links da loja de apps ─── */
+export const STORE_LINK = {
+apple: "https://apps.apple.com/br/app/ippenha/id6736615288?l=en-GB",
+android: "https://play.google.com/store/apps/details?id=br.com.eklesia.appEK3038",
 };
 
 /* ─── URL do perfil do Instagram (validada) ─── */
@@ -121,14 +126,62 @@ export const INSTAGRAM_PROFILE_URL = isSafeUrl(INSTAGRAM_PROFILE_URL_RAW)
 
 /* ─── Dados dos pastores ─── */
 export const PASTORS = [
-  { name: "Amauri Oliveira", role: "Pastor presidente", slug: "pastor-amauri-oliveira", image: pastorAmauri, bio: "" },
-  { name: "Fábio Carvalho", role: "Pastor auxiliar", slug: "pastor-fabio-carvalho", image: pastorFabio, bio: "" },
-  { name: "Carlos Henrique", role: "Pastor auxiliar", slug: "pastor-carlos-henrique", image: pastorCarlosHenrique, bio: "" },
-  { name: "Carlos Lima", role: "Pastor auxiliar", slug: "pastor-carlos-lima", image: pastorCarlosLima, bio: "" },
-  { name: "Paulo Castro", role: "Pastor auxiliar", slug: "pastor-paulo-castro", image: pastorPaulo, bio: "" },
-  { name: "Rogério C. Chaves", role: "Pastor auxiliar", slug: "pastor-rogerio-c-chaves", image: pastorRogerio, bio: "" },
-  { name: "Cornélio Castro", role: "Pastor auxiliar", slug: "pastor-cornelio-castro", image: pastorCornelio, bio: "" },
-  { name: "Filipe Checon", role: "Pastor auxiliar", slug: "pastor-filipe-checon", image: pastorFilipe, bio: "" },
+  {
+    name: "Amauri Oliveira",
+    role: "Pastor presidente",
+    slug: "pastor-amauri-oliveira",
+    image: pastorAmauri,
+    bio: "",
+  },
+  {
+    name: "Fábio Carvalho",
+    role: "Pastor auxiliar",
+    slug: "pastor-fabio-carvalho",
+    image: pastorFabio,
+    bio: "",
+  },
+  {
+    name: "Carlos Henrique",
+    role: "Pastor auxiliar",
+    slug: "pastor-carlos-henrique",
+    image: pastorCarlosHenrique,
+    bio: "",
+  },
+  {
+    name: "Carlos Lima",
+    role: "Pastor auxiliar",
+    slug: "pastor-carlos-lima",
+    image: pastorCarlosLima,
+    bio: "",
+  },
+  {
+    name: "Paulo Castro",
+    role: "Pastor auxiliar",
+    slug: "pastor-paulo-castro",
+    image: pastorPaulo,
+    bio: "",
+  },
+  {
+    name: "Rogério C. Chaves",
+    role: "Pastor auxiliar",
+    slug: "pastor-rogerio-c-chaves",
+    image: pastorRogerio,
+    bio: "",
+  },
+  {
+    name: "Cornélio Castro",
+    role: "Pastor auxiliar",
+    slug: "pastor-cornelio-castro",
+    image: pastorCornelio,
+    bio: "",
+  },
+  {
+    name: "Filipe Checon",
+    role: "Pastor auxiliar",
+    slug: "pastor-filipe-checon",
+    image: pastorFilipe,
+    bio: "",
+  },
 ];
 
 /* ─── Horários dos cultos ─── */
