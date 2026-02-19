@@ -30,7 +30,7 @@ export default function ConfissoesPage() {
       image={confissaoImg}
       imageAlt="Confissão de Fé de Westminster"
     >
-      <p className="mb-8">
+      <p className="mb-20">
         Os Símbolos de Fé oficiais da Igreja Presbiteriana do Brasil são:
         Confissão de Fé de Westminster, Catecismo Maior de Westminster e Breve
         Catecismo de Westminster. Estes documentos, elaborados pela Assembleia de
