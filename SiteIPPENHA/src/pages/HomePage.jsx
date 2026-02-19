@@ -29,7 +29,7 @@ const logos = [
 
 export default function HomePage() {
   return (
-    <main className="w-full bg-white">
+    <main className="w-full bg-white font-[Poppins,sans-serif]">
       {/* HERO */}
       <section className="w-full min-h-[90vh] flex items-center bg-[url('../assets/Fundo.svg')] bg-no-repeat bg-top bg-cover">
         <div className=" max-w-7xl m-auto px-28 grid grid-cols-1 lg:grid-cols-2 items-center  ">
@@ -49,7 +49,7 @@ export default function HomePage() {
                 href={CONTACT.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" inline-flex items-center justify-center gap-2 bg-[#0F715C] border border-white/30 text-white text-sm px-3 py-2 rounded-full hover:bg-[#11856c] hover:border-white/70 hover:border transition-colors w-55 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48]"
+                className=" inline-flex items-center justify-center gap-2 bg-[#0F715C] border border-white/30 text-white text-sm px-3 py-2 rounded-full hover:bg-[#11856c] hover:border-white/70 hover:border transition-colors w-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48]"
                 aria-label="Como chegar à igreja pelo Google Maps (abre em nova aba)"
               >
                 Venha nos visitar
