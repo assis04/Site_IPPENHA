@@ -97,7 +97,7 @@ export default function ContentPageLayout({
           )}
 
           {/* Espaçador — no desktop empurra o texto para após o fundo inferior da forma verde */}
-          <div className="h-6 lg:h-[200px]" aria-hidden="true" />
+          <div className="h-6 lg:h-[100px]" aria-hidden="true" />
 
           {/* Texto do conteúdo — Poppins Regular 20px
                line-height 1.6 (160%) — WCAG recomenda ≥ 1.5 para corpo de texto
