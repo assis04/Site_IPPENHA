@@ -147,7 +147,7 @@ export default function AgendaPage() {
   }
 
   return (
-    <main className="w-full min-h-screen bg-[#f5f7fa]">
+    <main className="w-full min-h-screen bg-[#F0F2E4]">
       {/* Toolbar */}
       <div className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-4">
         <Link
