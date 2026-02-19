@@ -16,10 +16,10 @@ export const NAV_LINKS = [
     children: [
       { label: "70 anos", href: "#" },
       { label: "Quem somos", href: "/quem-somos" },
-      { label: "Doutrina", href: "#",
-        children: [
-          { label: "Confissões de fé", href: "/confissoes-de-fe" },
-        ],
+      {
+        label: "Doutrina",
+        href: "#",
+        children: [{ label: "Confissões de fé", href: "/confissoes-de-fe" }],
       },
       {
         label: "Cultos",
@@ -116,8 +116,9 @@ export const SOCIAL_LINKS = {
 
 /* ─── Links da loja de apps ─── */
 export const STORE_LINK = {
-apple: "https://apps.apple.com/br/app/ippenha/id6736615288?l=en-GB",
-android: "https://play.google.com/store/apps/details?id=br.com.eklesia.appEK3038",
+  apple: "https://apps.apple.com/br/app/ippenha/id6736615288?l=en-GB",
+  android:
+    "https://play.google.com/store/apps/details?id=br.com.eklesia.appEK3038",
 };
 
 /* ─── URL do perfil do Instagram (validada) ─── */
@@ -134,56 +135,56 @@ export const PASTORS = [
     role: "Pastor presidente",
     slug: "pastor-amauri-oliveira",
     image: pastorAmauri,
-    bio: "",
+    bio: "O Rev. Amauri Oliveira serve à IPPenha há mais de uma década, exercendo um ministério marcado pelo acolhimento pastoral e visão estratégica. Casado com Márcia e pai de três filhos, o Rev. Amauri dedica especial atenção ao fortalecimento de casais e famílias. Além de seu pastoreio local, preside a Agência Presbiteriana de Missões Transculturais (APMT/IPB), refletindo seu profundo compromisso com a evangelização global e o suporte a missionários ao redor do mundo.",
   },
   {
     name: "Fábio Carvalho",
     role: "Pastor auxiliar",
     slug: "pastor-fabio-carvalho",
     image: pastorFabio,
-    bio: "",
+    bio: "Experiência Pastoral e Adoração Com mais de 28 anos de ministério pastoral, o Rev. Fábio Carvalho traz para a IPPenha a vivência de quem conhece as histórias da alma humana. Mineiro, casado com Janaína e pai de quatro filhos, ele é um perfil inspirador para a nossa juventude. Sua atuação é excepcional nas áreas de música, adolescentes e família, utilizando sua vasta experiência e histórias de vida para conectar gerações através de uma mensagem de esperança e fidelidade a Deus.",
   },
   {
     name: "Carlos Henrique",
     role: "Pastor auxiliar",
     slug: "pastor-carlos-henrique",
     image: pastorCarlosHenrique,
-    bio: "",
+    bio: "Pregação Expositiva e Ministério Infantil Reconhecido por sua maestria na pregação expositiva, o Rev. Carlos Henrique tem o dom de tornar as Escrituras claras e aplicáveis. Casado com Renata e pai de dois filhos, ele atua também como capelão escolar e universitário. Sua paixão pelo ensino bíblico se estende aos menores: ele lidera o Penha Kids, cuidando para que nossas crianças cresçam no conhecimento e na graça do Senhor Jesus.",
   },
   {
     name: "Carlos Lima",
     role: "Pastor auxiliar",
     slug: "pastor-carlos-lima",
     image: pastorCarlosLima,
-    bio: "",
+    bio: "Educação Cristã e Comunicação O Rev. Carlos Lima é o responsável pela solidez do ensino em nossa comunidade. Professor universitário com décadas de experiência na UNICSUL, ele aplica seu conhecimento acadêmico e sua formação em Publicidade para organizar e potencializar a Escola Bíblica e os departamentos de ensino da IPPenha. É casado com Michelle e pai de dois filhos, unindo erudição e prática ministerial para a edificação da igreja.",
   },
   {
     name: "Paulo Castro",
     role: "Pastor auxiliar",
     slug: "pastor-paulo-castro",
     image: pastorPaulo,
-    bio: "",
+    bio: "Missões e Ministério Hispânico Ordenado em 2025, o Rev. Paulo Castro representa o vigor da nova geração de pastores missionários. Tendo crescido no campo missionário no Paraguai, é fluente em espanhol e lidera a Igreja Hispânica que funciona em nossa comunidade. Casado com Priscila e pai da pequena Sarah, Paulo também coordena os trabalhos com jovens e adolescentes, focando na formação de uma identidade cristã bíblica e culturalmente relevante.",
   },
   {
     name: "Rogério C. Chaves",
     role: "Pastor auxiliar",
     slug: "pastor-rogerio-c-chaves",
     image: pastorRogerio,
-    bio: "",
+    bio: "Organização, Gestão e Assistência Social O Rev. Rogério Castro traz sua bem-sucedida experiência no mundo empresarial para o serviço integral do Reino. Responsável pela logística, agenda e organização administrativa da IPPenha, ele garante que a estrutura da igreja funcione para a glória de Deus. Casado com Daniela e pai de dois filhos, Rogério lidera a plantação da IP Piratininga, onde desenvolve um trabalho excepcional de cuidado com os necessitados e assistência social em uma região carente de nossa cidade.",
   },
   {
     name: "Cornélio Castro",
     role: "Pastor auxiliar",
     slug: "pastor-cornelio-castro",
     image: pastorCornelio,
-    bio: "",
+    bio: "Legado Missionário e Cuidado Pastoral Com uma trajetória de décadas servindo como missionário no Paraguai, o Rev. Cornélio Castro é uma referência de perseverança e amor às almas. Casado com Ema e pai de dois filhos (incluindo o Rev. Paulo Castro), ele atua hoje na divulgação do trabalho da APMT por todo o Brasil. Na IPPenha, seu coração pastoral se manifesta de forma especial no ministério de visitação aos idosos, trazendo consolo e sabedoria aos veteranos da nossa fé.",
   },
   {
     name: "Filipe Checon",
     role: "Pastor auxiliar",
     slug: "pastor-filipe-checon",
     image: pastorFilipe,
-    bio: "",
+    bio: "Plantio e Revitalização de Igrejas | Capelania | Liturgia | Evangelismo e Discipulado | Integração e Acolhimento. O Rev. Filipe Checon reúne, com excelência, a firmeza necessária à Capelania e a ternura indispensável ao discipulado cristão. Sua liderança é marcada por visão estratégica, zelo pastoral e profundo compromisso com a expansão do Reino de Deus. À frente da Comissão de Plantio e Revitalização de Igrejas na IP Penha e no Presbitério PSSP, conduz projetos com coragem missionária e sólida fundamentação bíblica. Atua como pastor responsável pelo acompanhamento e desenvolvimento de nossos seminaristas, investindo na formação de uma nova geração de líderes comprometidos com a Palavra e com a Igreja.Casado com Télia e pai de dois filhos (Hannah e Benjamin), Filipe alia vocação ministerial e vida familiar exemplar. Lidera ainda a expansão da IP Penha por meio da revitalização da IP Carrão, fortalecendo comunidades e reacendendo a chama da missão. a sede, lidera com dedicação a área de Evangelismo e Discipulado, promovendo crescimento espiritual consistente e intencional. Também é o responsável pela Liturgia e organização dos cultos, assegurando que cada culto reflita reverência, ordem e centralidade em Cristo. Supervisiona a área de Integração e Acolhimento, garantindo que cada visitante seja recebido com cuidado, atenção e amor cristão, sentindo-se, desde o primeiro contato, parte viva da nossa família da fé.",
   },
 ];
 
