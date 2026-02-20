@@ -24,7 +24,7 @@ export default function BaixeAppPage() {
             <div className="flex flex-wrap gap-4 mt-4 items-center justify-center">
               {/* Botão App Store + QR Code Pequeno */}
               <div className="flex flex-col items-center gap-2">
-                <button className=" lg:w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
+                <button className=" lg:w-52 w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
                   <a href={STORE_LINK.apple} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                       <AppStoreLogoIcon size={32} />
                       <div className="text-left">
@@ -44,7 +44,7 @@ export default function BaixeAppPage() {
 
               {/* Botão Google Play + QR Code Pequeno */}
               <div className="flex flex-col items-center gap-2">
-                <button className="lg:w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
+                <button className="lg:w-52 w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
                   <a href={STORE_LINK.android} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                       <GooglePlayLogoIcon size={32} />
                       <div className="text-left">
