@@ -47,12 +47,12 @@ export default function Header() {
 
         {/* Ações */}
         <div className="flex items-center gap-2 lg:gap-3">
-          <a
-            href="#"
+          <Link
+            to="/contribua"
             className="bg-[#0F715C] text-white text-sm px-5 py-2 rounded-full font-medium hover:bg-[#0a5e4c] transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
           >
             Contribua
-          </a>
+          </Link>
 
           <a
             href={SOCIAL_LINKS.youtube}
@@ -299,12 +299,12 @@ function MobileMenu({ open, onClose }) {
 
         {/* Ações */}
         <div className="p-4 border-t border-gray-100 flex flex-col gap-3">
-          <a
-            href="#"
+          <Link
+            to="/contribua"
             className="w-full bg-[#0F715C] text-white text-center py-3 rounded-full font-medium hover:bg-[#0a5e4c] transition-colors"
           >
             Contribua
-          </a>
+          </Link>
 
           <div className="flex justify-center gap-3">
             <a
