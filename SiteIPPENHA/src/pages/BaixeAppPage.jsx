@@ -15,7 +15,7 @@ export default function BaixeAppPage() {
       <section className="lg:w-2/3 bg-[#FFFFFF] font-poppins justify-center items-center flex justify-self-center">
         <div className="max-w-7xl mx-auto px-6 py-6 gap-12 items-center">
           {/* Coluna da Esquerda: Texto e Botões */}
-          <div className="flex flex-col gap-6 text-center items-center justify-center flex">
+          <div className="flex flex-col gap-6 text-center items-center justify-center">
             <p className="text-gray-700 text-lg">
               Acompanhe os cultos, acesse estudos bíblicos, faça suas doações e
               receba notificações importantes diretamente no seu celular.

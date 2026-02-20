@@ -57,7 +57,7 @@ export default function ContentPageLayout({
             <img
               src={image}
               alt={imageAlt}
-              className="float-right ml-6 mb-6 lg:ml-10 lg:mb-6 w-full max-w-[260px] sm:max-w-[320px] lg:max-w-[451px] object-cover"
+              className="float-right ml-6 mb-6 lg:ml-10 lg:mb-6 w-full max-w-65 sm:max-w-[320px] lg:max-w-112.75 object-cover"
               style={{
                 borderRadius: "133px",
                 aspectRatio: "451 / 415",
@@ -97,7 +97,7 @@ export default function ContentPageLayout({
           )}
 
           {/* Espaçador — no desktop empurra o texto para após o fundo inferior da forma verde */}
-          <div className="h-6 lg:h-[100px]" aria-hidden="true" />
+          <div className="h-6 lg:h-25" aria-hidden="true" />
 
           {/* Texto do conteúdo — Poppins Regular 20px
                line-height 1.6 (160%) — WCAG recomenda ≥ 1.5 para corpo de texto

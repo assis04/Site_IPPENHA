@@ -6,6 +6,9 @@ import pastorPaulo from "../assets/pastors/PauloCastro.svg";
 import pastorRogerio from "../assets/pastors/RogerioCChaves.svg";
 import pastorCornelio from "../assets/pastors/CornelioCastro.svg";
 import pastorFilipe from "../assets/pastors/FilipeChecon.svg";
+import ConexaoComDeus from "../assets/ConexaoComDeus.svg";
+import EBT from "../assets/EBT.svg";
+import EtepWhite from "../assets/EtepWhite.svg";
 import { isSafeUrl } from "../utils/safeUrl";
 
 /* ─── Links de navegação (compartilhados entre header e footer) ─── */
@@ -111,7 +114,7 @@ export const CONTACT = {
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/ippenha/",
   youtube: "https://www.youtube.com/@ippenha",
-  youtubeCultos: "https://www.youtube.com/@ippenhacultos",
+  youtubeCultos: "https://www.youtube.com/@ippenhacultos/streams",
 };
 
 /* ─── Links da loja de apps ─── */
@@ -197,10 +200,47 @@ export const PASTORS = [
 ];
 
 /* ─── Horários dos cultos ─── */
-export const SCHEDULES = [
-  { name: "Cultos Dominicais", time: "Domingo — 9h | 18h" },
-  { name: "Culto Hispano", time: "Domingo — 11h" },
-  { name: "Conexão com Deus", time: "Segunda-feira — 20h" },
-  { name: "Tarde da Esperança", time: "Quarta-feira — 14h30" },
-  { name: "ETEP", time: "Quinta-feira — 20h" },
+export const SCHEDULEDATA = [
+  {
+    title: "Cultos Dominicais",
+    info: "Cultos Dominicais 9h | 18h",
+    extra: "Culto Hispano 11h",
+    bg: "bg-[#3C6F48]",
+    textColor: "text-white",
+    type: "text",
+  },
+  {
+    title: "EBT",
+    img: EBT,
+    info: "Classes Dominicais",
+    extra: "9h | 9h30",
+    action: "Inscreva-se",
+    link: "https://gestaoweb.eklesiaonline.com.br/divulgacao/n/74c7494264e77f31d4",
+    bg: "bg-[#F0F2E4]",
+    textColor: "text-[#3C6F48]",
+    type: "image",
+  },
+  {
+    title: "Conexão com Deus",
+    img: ConexaoComDeus,
+    info: "Segunda-feira 20h",
+    bg: "bg-[#1F3827]",
+    textColor: "text-white",
+    type: "image",
+  },
+  {
+    title: "Tarde da Esperança",
+    info: "Quarta-feira 14h30",
+    bg: "bg-[#E0F2CF]",
+    textColor: "text-[#1F3827]",
+    type: "text",
+  },
+  {
+    title: "ETEP",
+    img: EtepWhite,
+    info: "Quinta-feira 20h",
+    bg: "bg-[#3C6F48]",
+    textColor: "text-white",
+    type: "image",
+  },
 ];
