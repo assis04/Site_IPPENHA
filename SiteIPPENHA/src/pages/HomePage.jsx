@@ -11,7 +11,9 @@ import EtepWhite from "../assets/EtepWhite.svg";
 import Etep from "../assets/Etep.svg";
 import PastorsSection from "../components/PastorsSection";
 import InstagramSection from "../components/InstagramSection";
-import { CONTACT, SOCIAL_LINKS } from "../data/constants";
+import CarroselCultos from "../components/CarroselCultos";
+import { CONTACT, SOCIAL_LINKS, SCHEDULEDATA } from "../data/constants";
+import { useRef } from "react";
 
 /**
  * Página inicial — contém Hero, Cards, Bem-vindo, Ministérios, Pastores e Instagram.
@@ -28,39 +30,96 @@ const logos = [
 ];
 
 export default function HomePage() {
+  const carouselRef = useRef(null);
+  const isScrolling = useRef(false);
+
+  // Lógica nova, matemática e à prova de bugs para o carrossel
+  const scroll = (direction) => {
+    if (!carouselRef.current || isScrolling.current) return;
+    isScrolling.current = true;
+
+    const container = carouselRef.current;
+    const scrollLeft = container.scrollLeft;
+    const cards = Array.from(container.children);
+
+    // Encontra o centro do container na visão atual
+    const containerCenter = scrollLeft + container.clientWidth / 2;
+
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    // Acha qual card está mais perto do centro no momento
+    cards.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + card.clientWidth / 2;
+      const distance = Math.abs(containerCenter - cardCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    // Define o alvo baseado na direção
+    let targetIndex = closestIndex;
+    if (direction === "left" && closestIndex > 0) {
+      targetIndex = closestIndex - 1;
+    } else if (direction === "right" && closestIndex < cards.length - 1) {
+      targetIndex = closestIndex + 1;
+    }
+
+    // Calcula a posição exata para cravar o card alvo no centro
+    const targetCard = cards[targetIndex];
+    const targetScrollLeft =
+      targetCard.offsetLeft -
+      container.clientWidth / 2 +
+      targetCard.clientWidth / 2;
+
+    container.scrollTo({
+      left: targetScrollLeft,
+      behavior: "smooth",
+    });
+
+    // Libera o clique de novo após a animação (500ms)
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 500);
+  };
+
   return (
     <main className="w-full bg-white font-[Poppins,sans-serif]">
       {/* HERO */}
-      <section className="w-full min-h-[90vh] flex items-center bg-[url('../assets/Fundo.svg')] bg-no-repeat bg-top bg-cover">
-        <div className=" max-w-7xl m-auto px-28 grid grid-cols-1 lg:grid-cols-2 items-center  ">
-          <div className="flex flex-col gap-6 lg:w-90 ">
-            <h1 className="text-xl lg:text-3xl font-bold text-gray-900 leading-tight ">
+      <section className="w-full min-h-[90vh] flex items-center bg-[url('../assets/pages/igreja-fachada.jpg')] bg-black/60 bg-blend-overlay lg:bg-[url('../assets/Fundo.svg')] lg:bg-transparent lg:bg-blend-normal bg-no-repeat bg-top bg-cover">
+        <div className="max-w-7xl mx-auto px-6 md:px-28 lg:grid lg:grid-cols-2 items-center w-full">
+          <div className="flex flex-col gap-6 md:text-justify lg:text-left lg:max-w-90">
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-white lg:text-gray-900 leading-tight">
               Alcançados pela Graça, Enviados para Servir.
             </h1>
-            <p className="text-xl text-white">
+
+            <p className="text-lg md:text-2xl lg:text-xl text-white">
               Na Igreja Presbiteriana da Penha, vivemos a alegria de pertencer a
               Deus. Somos uma comunidade de fé reformada que ama a Bíblia e se
               dedica com fervor à missão de proclamar Cristo em nosso bairro e
               em todo o mundo. Venha ser parte de uma família que acolhe e
               transforma.
             </p>
-            <div className="flex gap-5 justify-around">
+
+            <div className="flex flex-col md:flex-row gap-2 justify-center lg:justify-start">
               <a
                 href={CONTACT.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" inline-flex items-center justify-center gap-2 bg-[#0F715C] border border-white/30 text-white text-sm px-3 py-2 rounded-full hover:bg-[#11856c] hover:border-white/70 hover:border transition-colors w-60 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48]"
+                className="inline-flex items-center justify-center gap-2 bg-[#0F715C] border border-white/30 text-white text-sm px-3 py-2 rounded-full hover:bg-[#11856c] hover:border-white/70 hover:border transition-colors w-full md:w-1/2 lg:w-1/2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48]"
                 aria-label="Como chegar à igreja pelo Google Maps (abre em nova aba)"
               >
                 Venha nos visitar
                 <MapTrifoldIcon size={20} aria-hidden="true" />
               </a>
+
               <a
                 href={SOCIAL_LINKS.youtubeCultos}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" inline-flex items-center justify-center gap-2  border border-white text-white text-sm px-3 py-2 rounded-full hover:bg-[#11856c] hover:border-white/30 transition-colors w-55 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48]"
-                aria-label="Como chegar à igreja pelo Google Maps (abre em nova aba)"
+                className="inline-flex items-center justify-center gap-2 border border-white text-white text-sm px-1 py-2 rounded-full hover:bg-[#11856c] hover:border-white/30 transition-colors w-full md:w-1/2 lg:w-1/2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48]"
+                aria-label="Assistir aos cultos online (abre em nova aba)"
               >
                 Assistir Online
                 <PlayIcon size={20} weight="fill" />
@@ -68,45 +127,19 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className=" flex  justify-end ">
+          <div className="hidden lg:flex justify-end">
             <img
               src={IPPENHA}
               alt="Imagem da igreja IPPENHA"
-              className="max-w-150"
+              className="max-w-150 w-full"
             />
           </div>
         </div>
       </section>
 
       {/* Seção Cards */}
-      <section className="w-full bg-white py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 ">
-          <div className="bg-[#3C6F48] text-white p-8 flex flex-col rounded-3xl text-center justify-center">
-            <h3 className="font-bold text-2xl">Cultos Dominicais</h3>
-            <p>9h | 18h Culto Hispano 11h</p>
-          </div>
 
-          <div className="bg-[#F0F2E4] text-black p-8 rounded-3xl flex flex-col items-center text-center  justify-center">
-            <img src={EBT} alt="" />
-            <button className="font-semibold">Inscreva-se</button>
-          </div>
-
-          <div className="bg-[#1F3827] text-white p-8 rounded-3xl flex flex-col items-center text-center  justify-center">
-            <img src={ConexaoComDeus} alt="Conexão com Deus" />
-            <p>Segunda-feira 20h</p>
-          </div>
-
-          <div className="bg-[#E0F2CF] text-black p-8 rounded-3xl flex flex-col items-center text-center  justify-center">
-            <h3 className="font-bold text-2xl">Tarde da Esperança</h3>
-            <p>Quarta-feira 14h30</p>
-          </div>
-
-          <div className="bg-[#3C6F48] text-white p-8 rounded-3xl flex flex-col  items-center text-center  justify-center">
-            <img src={EtepWhite} alt="Conexão com Deus" />
-            <p>Quinta-feira 20h</p>
-          </div>
-        </div>
-      </section>
+      <CarroselCultos />
 
       {/* Seção seja bem vindo */}
       <section className="w-full bg-[#F0F2E4] ">
@@ -161,7 +194,7 @@ export default function HomePage() {
               <img
                 key={`a-${i}`}
                 src={logo.src}
-                className="h-16 mx-8 flex-shrink-0"
+                className="h-16 mx-8 shrink-0"
                 alt={logo.alt}
               />
             ))}
@@ -170,7 +203,7 @@ export default function HomePage() {
               <img
                 key={`b-${i}`}
                 src={logo.src}
-                className="h-16 mx-8 flex-shrink-0"
+                className="h-16 mx-8 shrink-0"
                 alt={logo.alt}
               />
             ))}

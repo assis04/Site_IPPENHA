@@ -48,6 +48,7 @@ export default function PastorPage() {
       image={pastor.image}
       imageAlt={`Foto de ${pastor.name}`}
     >
+      {pastor.title ? ( <p className="font-bold">{pastor.title}</p>) : ("")}
       {pastor.bio ? (
         <p>{pastor.bio}</p>
       ) : (

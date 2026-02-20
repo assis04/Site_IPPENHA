@@ -8,6 +8,7 @@ import QuemSomosPage from "./pages/QuemSomosPage";
 import PastorPage from "./pages/PastorPage";
 import BaixeAppPage from "./pages/BaixeAppPage";
 import ConfissoesPage from "./pages/ConfissoesPage";
+import ContribuaPage from "./pages/ContribuaPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/quem-somos" element={<QuemSomosPage />} />
         <Route path="/confissoes-de-fe" element={<ConfissoesPage />} />
         <Route path="/pastores/:slug" element={<PastorPage />} />
+        <Route path="/contribua" element={<ContribuaPage />} />
         <Route path="/baixe-app" element={<BaixeAppPage />} />
       </Routes>
       <Footer />

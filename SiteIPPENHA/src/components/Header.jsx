@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  InstagramLogo,
-  YoutubeLogo,
-  List,
-  X,
-  CaretDown,
-  CaretRight,
+  InstagramLogoIcon,
+  YoutubeLogoIcon,
+  ListIcon,
+  XIcon,
+  CaretDownIcon,
 } from "@phosphor-icons/react";
 import logo from "../assets/logo.svg";
 import { NAV_LINKS, SOCIAL_LINKS } from "../data/constants";
@@ -48,12 +47,12 @@ export default function Header() {
 
         {/* Ações */}
         <div className="flex items-center gap-2 lg:gap-3">
-          <a
-            href="#"
+          <Link
+            to="/contribua"
             className="bg-[#0F715C] text-white text-sm px-5 py-2 rounded-full font-medium hover:bg-[#0a5e4c] transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
           >
             Contribua
-          </a>
+          </Link>
 
           <a
             href={SOCIAL_LINKS.youtube}
@@ -62,7 +61,7 @@ export default function Header() {
             className="hidden sm:flex bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
             aria-label="YouTube da IPPENHA (abre em nova aba)"
           >
-            <YoutubeLogo size={20} weight="fill" aria-hidden="true" />
+            <YoutubeLogoIcon size={20} weight="fill" aria-hidden="true" />
           </a>
 
           <a
@@ -72,7 +71,7 @@ export default function Header() {
             className="hidden sm:flex bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
             aria-label="Instagram da IPPENHA (abre em nova aba)"
           >
-            <InstagramLogo size={20} aria-hidden="true" />
+            <InstagramLogoIcon size={20} aria-hidden="true" />
           </a>
 
           {/* Hamburger */}
@@ -83,7 +82,7 @@ export default function Header() {
             aria-label="Abrir menu de navegação"
             aria-expanded={mobileOpen}
           >
-            <List size={26} aria-hidden="true" />
+            <ListIcon size={26} aria-hidden="true" />
           </button>
         </div>
       </nav>
@@ -148,7 +147,7 @@ function DesktopNavItem({ item }) {
         aria-expanded={open}
       >
         {item.label}
-        <CaretDown
+        <CaretDownIcon
           size={13}
           weight="bold"
           className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -161,7 +160,7 @@ function DesktopNavItem({ item }) {
         <div className="absolute top-full left-0 pt-2 z-50">
           <div
             className={`bg-white rounded-xl shadow-lg border border-gray-100 py-2 animate-dropdown ${
-              isWide ? "min-w-[420px]" : "min-w-[220px]"
+              isWide ? "min-w-105" : "min-w-55"
             }`}
             role="menu"
           >
@@ -279,7 +278,7 @@ function MobileMenu({ open, onClose }) {
             className="p-2 rounded-lg hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C]"
             aria-label="Fechar menu"
           >
-            <X size={22} aria-hidden="true" />
+            <XIcon size={22} aria-hidden="true" />
           </button>
         </div>
 
@@ -300,12 +299,12 @@ function MobileMenu({ open, onClose }) {
 
         {/* Ações */}
         <div className="p-4 border-t border-gray-100 flex flex-col gap-3">
-          <a
-            href="#"
+          <Link
+            to="/contribua"
             className="w-full bg-[#0F715C] text-white text-center py-3 rounded-full font-medium hover:bg-[#0a5e4c] transition-colors"
           >
             Contribua
-          </a>
+          </Link>
 
           <div className="flex justify-center gap-3">
             <a
@@ -315,7 +314,7 @@ function MobileMenu({ open, onClose }) {
               className="bg-gray-100 p-2.5 rounded-full hover:bg-gray-200 transition-colors"
               aria-label="YouTube"
             >
-              <YoutubeLogo size={20} weight="fill" aria-hidden="true" />
+              <YoutubeLogoIcon size={20} weight="fill" aria-hidden="true" />
             </a>
             <a
               href={SOCIAL_LINKS.instagram}
@@ -324,7 +323,7 @@ function MobileMenu({ open, onClose }) {
               className="bg-gray-100 p-2.5 rounded-full hover:bg-gray-200 transition-colors"
               aria-label="Instagram"
             >
-              <InstagramLogo size={20} aria-hidden="true" />
+              <InstagramLogoIcon size={20} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -364,7 +363,7 @@ function MobileNavItem({ item, expanded, toggle, onClose, depth = 0 }) {
         <span className="flex items-center gap-2">
           {item.label}
         </span>
-        <CaretDown
+        <CaretDownIcon
           size={16}
           weight="bold"
           className={`shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}

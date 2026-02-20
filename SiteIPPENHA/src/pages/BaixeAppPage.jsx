@@ -15,7 +15,7 @@ export default function BaixeAppPage() {
       <section className="lg:w-2/3 bg-[#FFFFFF] font-poppins justify-center items-center flex justify-self-center">
         <div className="max-w-7xl mx-auto px-6 py-6 gap-12 items-center">
           {/* Coluna da Esquerda: Texto e Botões */}
-          <div className="flex flex-col gap-6 text-center items-center justify-center flex">
+          <div className="flex flex-col gap-6 text-center items-center justify-center">
             <p className="text-gray-700 text-lg">
               Acompanhe os cultos, acesse estudos bíblicos, faça suas doações e
               receba notificações importantes diretamente no seu celular.
@@ -24,7 +24,7 @@ export default function BaixeAppPage() {
             <div className="flex flex-wrap gap-4 mt-4 items-center justify-center">
               {/* Botão App Store + QR Code Pequeno */}
               <div className="flex flex-col items-center gap-2">
-                <button className=" lg:w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
+                <button className="w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
                   <a href={STORE_LINK.apple} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                       <AppStoreLogoIcon size={32} />
                       <div className="text-left">
@@ -44,7 +44,7 @@ export default function BaixeAppPage() {
 
               {/* Botão Google Play + QR Code Pequeno */}
               <div className="flex flex-col items-center gap-2">
-                <button className="lg:w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
+                <button className="w-52 bg-black text-white px-6 py-3 rounded-xl flex items-center gap-3 hover:bg-gray-800 transition-all">
                   <a href={STORE_LINK.android} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3">
                       <GooglePlayLogoIcon size={32} />
                       <div className="text-left">

@@ -12,22 +12,24 @@ import {
   NAV_LINKS,
   CONTACT,
   SOCIAL_LINKS,
-  SCHEDULES,
+  SCHEDULEDATA,
 } from "../data/constants";
+
+const WARM_BG_ROUTES = ["/", "/agenda"];
 
 /**
  * Footer do site.
  */
 export default function Footer() {
   const { pathname } = useLocation();
-  const isHome = pathname === "/";
+  const useWarmBg = WARM_BG_ROUTES.includes(pathname);
 
   return (
     <footer
-      className={`w-full text-white relative font-[Poppins,sans-serif] ${isHome ? "bg-[#F0F2E4]" : "bg-white"}`}
+      className={`w-full text-white relative font-[Poppins,sans-serif] ${useWarmBg ? "bg-[#F0F2E4]" : "bg-white"}`}
     >
       {/* Onda curva do topo — path extraído do Figma */}
-      <div className="w-full overflow-hidden leading-[0] -mb-px">
+      <div className="w-full overflow-hidden leading-0 -mb-px">
         <svg
           className="w-full h-auto block"
           viewBox="0 -6 1440 86"
@@ -56,7 +58,11 @@ export default function Footer() {
       </div>
 
       {/* Área com gradiente (conteúdo + copyright) */}
-      <div style={{ background: "linear-gradient(90deg, #216F48 20%, #36A268 75%)" }}>
+      <div
+        style={{
+          background: "linear-gradient(90deg, #216F48 20%, #36A268 75%)",
+        }}
+      >
         {/* Grid de conteúdo */}
         <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Coluna 1 — Logo e descrição */}
@@ -126,11 +132,13 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Cultos e Programações</h3>
             <ul className="flex flex-col gap-2.5 text-sm text-white/85">
-              {SCHEDULES.map((item) => (
-                <li key={item.name}>
-                  <span className="font-medium text-white">{item.name}</span>
+              {SCHEDULEDATA.map((item) => (
+                <li key={item.title}>
+                  <span className="font-medium text-white">{item.title}</span>
                   <br />
-                  {item.time}
+                  {item.info}
+                  <br />
+                  {item.extra}
                 </li>
               ))}
             </ul>
@@ -141,7 +149,12 @@ export default function Footer() {
             <h3 className="text-lg font-semibold">Contato</h3>
             <ul className="flex flex-col gap-3 text-sm text-white/85">
               <li className="flex items-start gap-2.5">
-                <MapPin size={18} weight="fill" className="mt-0.5 shrink-0 text-white" aria-hidden="true" />
+                <MapPin
+                  size={18}
+                  weight="fill"
+                  className="mt-0.5 shrink-0 text-white"
+                  aria-hidden="true"
+                />
                 <span>
                   {CONTACT.address}
                   <br />
@@ -149,14 +162,30 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone size={18} weight="fill" className="shrink-0 text-white" aria-hidden="true" />
-                <a href={CONTACT.phoneHref} className="hover:text-white transition-colors">
+                <Phone
+                  size={18}
+                  weight="fill"
+                  className="shrink-0 text-white"
+                  aria-hidden="true"
+                />
+                <a
+                  href={CONTACT.phoneHref}
+                  className="hover:text-white transition-colors"
+                >
                   {CONTACT.phone}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <EnvelopeSimple size={18} weight="fill" className="shrink-0 text-white" aria-hidden="true" />
-                <a href={`mailto:${CONTACT.email}`} className="hover:text-white transition-colors">
+                <EnvelopeSimple
+                  size={18}
+                  weight="fill"
+                  className="shrink-0 text-white"
+                  aria-hidden="true"
+                />
+                <a
+                  href={`mailto:${CONTACT.email}`}
+                  className="hover:text-white transition-colors"
+                >
                   {CONTACT.email}
                 </a>
               </li>
