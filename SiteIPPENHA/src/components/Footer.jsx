@@ -15,16 +15,18 @@ import {
   SCHEDULEDATA,
 } from "../data/constants";
 
+const WARM_BG_ROUTES = ["/", "/agenda"];
+
 /**
  * Footer do site.
  */
 export default function Footer() {
   const { pathname } = useLocation();
-  const isHome = pathname === "/";
+  const useWarmBg = WARM_BG_ROUTES.includes(pathname);
 
   return (
     <footer
-      className={`w-full text-white relative font-[Poppins,sans-serif] ${isHome ? "bg-[#F0F2E4]" : "bg-white"}`}
+      className={`w-full text-white relative font-[Poppins,sans-serif] ${useWarmBg ? "bg-[#F0F2E4]" : "bg-white"}`}
     >
       {/* Onda curva do topo — path extraído do Figma */}
       <div className="w-full overflow-hidden leading-0 -mb-px">
