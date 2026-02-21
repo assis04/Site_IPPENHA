@@ -27,7 +27,7 @@ export async function fetchEvents() {
  * @returns {Promise<Object>} Detalhes do evento
  */
 export async function fetchEventDetails(codEvento) {
-  const res = await fetch(`${API_BASE}?codEvento=${codEvento}`);
+  const res = await fetch(`${API_BASE}?codEvento=${encodeURIComponent(codEvento)}`);
   if (!res.ok) throw new Error(`Erro ao carregar detalhes do evento (${res.status})`);
   return res.json();
 }
