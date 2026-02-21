@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { SCHEDULEDATA } from "../data/constants";
 
-export default function SeusCultos() {
+export default function SeusCultos({ sectionTitle = "Nossos Cultos", showTitle = false }) {
   const carouselRef = useRef(null);
   const isScrolling = useRef(false);
 
@@ -51,12 +51,20 @@ export default function SeusCultos() {
   };
 
   return (
-    <section className="w-full bg-white py-12 lg:py-16 font-poppins overflow-hidden relative">
+    <section className="w-full bg-white py-12 lg:py-16 font-poppins overflow-hidden relative" aria-labelledby="cultos-heading">
+      <h2
+        id="cultos-heading"
+        className={showTitle ? "text-2xl font-bold text-black text-center mb-8" : "sr-only"}
+      >
+        {sectionTitle}
+      </h2>
+
       <div className="w-full max-w-7xl mx-auto relative group">
         {/* Setas de navegação */}
         <div className="absolute top-1/2 -translate-y-1/2 left-2 right-2 sm:left-4 sm:right-4 flex items-center justify-between pointer-events-none xl:hidden z-10">
           <button
             onClick={() => scroll("left")}
+            aria-label="Slide anterior"
             className="pointer-events-auto bg-white/90 backdrop-blur-sm p-2 sm:p-3 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-gray-100 text-[#3C6F48] hover:bg-white active:scale-95 transition-all"
           >
             <svg
@@ -76,6 +84,7 @@ export default function SeusCultos() {
           </button>
           <button
             onClick={() => scroll("right")}
+            aria-label="Próximo slide"
             className="pointer-events-auto bg-white/90 backdrop-blur-sm p-2 sm:p-3 rounded-full shadow-[0_4px_12px_rgba(0,0,0,0.1)] border border-gray-100 text-[#3C6F48] hover:bg-white active:scale-95 transition-all"
           >
             <svg
@@ -146,6 +155,7 @@ export default function SeusCultos() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`${item.action} (abre em nova aba)`}
                     // Botão mais presente, com maior padding e fonte maior
                     className="border-2 border-current px-8 py-2 sm:px-10 sm:py-2.5 xl:px-6 xl:py-1.5 rounded-full text-[15px] sm:text-[16px] xl:text-[13px] font-bold transition-colors hover:bg-black/10 inline-block"
                   >

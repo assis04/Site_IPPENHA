@@ -288,6 +288,7 @@ function EventDetails({ details }) {
             target="_blank"
             rel="noopener noreferrer"
             className="fc-modal-btn"
+            aria-label="Inscreva-se no evento (abre em nova aba)"
           >
             Inscreva-se
           </a>

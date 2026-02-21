@@ -312,7 +312,7 @@ function MobileMenu({ open, onClose }) {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-100 p-2.5 rounded-full hover:bg-gray-200 transition-colors"
-              aria-label="YouTube"
+              aria-label="YouTube da IPPENHA (abre em nova aba)"
             >
               <YoutubeLogoIcon size={20} weight="fill" aria-hidden="true" />
             </a>
@@ -321,7 +321,7 @@ function MobileMenu({ open, onClose }) {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gray-100 p-2.5 rounded-full hover:bg-gray-200 transition-colors"
-              aria-label="Instagram"
+              aria-label="Instagram da IPPENHA (abre em nova aba)"
             >
               <InstagramLogoIcon size={20} aria-hidden="true" />
             </a>
