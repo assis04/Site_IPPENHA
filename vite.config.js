@@ -9,9 +9,12 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    // Proxy para o WordPress local (LocalWP).
     proxy: {
       '/wp-content/calendar-api': {
+        target: 'http://ippenha.local',
+        changeOrigin: true,
+      },
+      '/wp-content/instagram-api': {
         target: 'http://ippenha.local',
         changeOrigin: true,
       },

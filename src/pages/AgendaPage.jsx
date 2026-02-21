@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef, useEffect } from "react";
+import DOMPurify from "dompurify";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
@@ -274,7 +275,9 @@ function EventDetails({ details }) {
       {ev.informacoesDivulgacao && (
         <div
           className="fc-modal-section"
-          dangerouslySetInnerHTML={{ __html: ev.informacoesDivulgacao }}
+          dangerouslySetInnerHTML={{
+            __html: DOMPurify.sanitize(ev.informacoesDivulgacao),
+          }}
         />
       )}
 
