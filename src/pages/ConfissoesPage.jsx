@@ -49,7 +49,9 @@ export default function ConfissoesPage() {
   );
 }
 
-function DocumentCard({ doc }) {
+function DocumentCard({ doc, headingLevel = 2 }) {
+  const Heading = `h${headingLevel}`;
+
   return (
     <article className="flex flex-col bg-[#F0F2E4] rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
       {/* Ícone decorativo */}
@@ -76,8 +78,7 @@ function DocumentCard({ doc }) {
         </svg>
       </div>
 
-      {/* Título do documento */}
-      <h3
+      <Heading
         className="text-black mb-2"
         style={{
           fontFamily: "'Poppins', sans-serif",
@@ -87,7 +88,7 @@ function DocumentCard({ doc }) {
         }}
       >
         {doc.title}
-      </h3>
+      </Heading>
 
       {/* Descrição */}
       <p

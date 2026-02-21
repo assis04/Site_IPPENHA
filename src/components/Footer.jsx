@@ -218,6 +218,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-white transition-colors"
+                aria-label="Igreja Presbiteriana do Brasil (abre em nova aba)"
               >
                 Igreja Presbiteriana do Brasil
               </a>

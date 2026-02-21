@@ -204,7 +204,8 @@ export default function HomePage() {
                 key={`b-${i}`}
                 src={logo.src}
                 className="h-16 mx-8 shrink-0"
-                alt={logo.alt}
+                alt=""
+                aria-hidden="true"
               />
             ))}
           </div>
