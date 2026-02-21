@@ -9,6 +9,7 @@ import PastorPage from "./pages/PastorPage";
 import BaixeAppPage from "./pages/BaixeAppPage";
 import ConfissoesPage from "./pages/ConfissoesPage";
 import ContribuaPage from "./pages/ContribuaPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/pastores/:slug" element={<PastorPage />} />
         <Route path="/contribua" element={<ContribuaPage />} />
         <Route path="/baixe-app" element={<BaixeAppPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </>
