@@ -1,10 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { isSafeUrl } from "../utils/safeUrl";
 
-/** TTL do cache em ms (padrão: 10 min). Reduz chamadas à API e ajuda a respeitar rate limit. */
 const CACHE_TTL_MS = 10 * 60 * 1000;
+const PROXY_URL = "/wp-content/instagram-api/instagram-feed.php";
 
-/** Cache em memória (singleton) para o feed Instagram. */
 const feedCache = { data: null, timestamp: 0 };
 
 function getCached() {
@@ -44,7 +43,7 @@ function sanitizePosts(raw) {
 const MESSAGE_FALLBACK = "Falha ao carregar feed";
 
 /**
- * Hook que carrega o feed do Instagram com cache (TTL) e tratamento de 429 (rate limit).
+ * Hook que carrega o feed do Instagram via proxy PHP (token fica no servidor).
  *
  * @returns {{ posts: array, loading: boolean, error: string | null, displayedCount: number, setDisplayedCount: function, retry: function }}
  */
@@ -54,9 +53,7 @@ export function useInstagramFeed() {
   const [error, setError] = useState(null);
   const [displayedCount, setDisplayedCount] = useState(6);
   const [retryKey, setRetryKey] = useState(0);
-
-  const userId = import.meta.env.VITE_INSTAGRAM_USER_ID?.toString().trim();
-  const token = import.meta.env.VITE_INSTAGRAM_ACCESS_TOKEN?.toString().trim();
+  const abortRef = useRef(null);
 
   const retry = useCallback(() => {
     clearInstagramFeedCache();
@@ -66,12 +63,6 @@ export function useInstagramFeed() {
   }, []);
 
   useEffect(() => {
-    if (!userId || !token) {
-      setError("Variáveis de ambiente do Instagram não configuradas.");
-      setLoading(false);
-      return;
-    }
-
     const cached = getCached();
     if (cached) {
       setPosts(cached);
@@ -79,12 +70,16 @@ export function useInstagramFeed() {
       return;
     }
 
-    const url = `https://graph.instagram.com/${encodeURIComponent(userId)}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url&access_token=${encodeURIComponent(token)}&limit=12`;
+    const controller = new AbortController();
+    abortRef.current = controller;
 
-    fetch(url)
+    fetch(`${PROXY_URL}?limit=12`, { signal: controller.signal })
       .then((response) => {
         if (response.status === 429) {
           throw { isRateLimit: true };
+        }
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
         }
         return response.json();
       })
@@ -99,6 +94,7 @@ export function useInstagramFeed() {
         setPosts(sanitized);
       })
       .catch((err) => {
+        if (err?.name === "AbortError") return;
         if (err?.isRateLimit) {
           setError("Muitas requisições. Aguarde alguns minutos e tente novamente.");
           return;
@@ -106,7 +102,9 @@ export function useInstagramFeed() {
         setError(MESSAGE_FALLBACK);
       })
       .finally(() => setLoading(false));
-  }, [userId, token, retryKey]);
+
+    return () => controller.abort();
+  }, [retryKey]);
 
   return {
     posts,

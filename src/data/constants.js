@@ -114,7 +114,7 @@ export const CONTACT = {
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/ippenha/",
   youtube: "https://www.youtube.com/@ippenha",
-  youtubeCultos: "https://www.youtube.com/@ippenhacultos/streams",
+  youtubeCultos: "https://www.youtube.com/@ippenha",
 };
 
 /* ─── Links da loja de apps ─── */
