@@ -1,6 +1,8 @@
 import ContentPageLayout from "../components/ContentPageLayout";
 import igrejaImg from "../assets/pages/igreja-fachada.jpg";
 
+const MEMBERS_COUNT = 1551;
+
 export default function QuemSomosPage() {
   return (
     <ContentPageLayout
@@ -51,7 +53,7 @@ export default function QuemSomosPage() {
         do Reino dos céus.
       </p>
       <p className="mb-4">
-        Hoje somos cerca de 1400 membros e Deus nos tem dado a alegria de contar
+        Hoje somos cerca de {MEMBERS_COUNT} membros e Deus nos tem dado a alegria de contar
         com irmãos comprometidos, talentosos e dotados pelo Espírito Santo, cujo
         exercício dos dons tem edificado a igreja mais e mais. E ela segue em
         paz, crescendo em número e sendo edificada no temor do Senhor.
