@@ -1,7 +1,306 @@
-/* ─── Calendário ─── */
+/* ─── Container do calendário ─── */
 .calendar-container {
   width: 100%;
   max-width: 100%;
+}
+
+/* ─── Toolbar: navegação + título + botões de visualização ─── */
+.calendar-container .fc .fc-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendar-container .fc .fc-toolbar-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-transform: capitalize;
+  font-size: 1.35rem;
+}
+
+/* ─── Botões do FullCalendar: estilo base ─── */
+.calendar-container .fc .fc-button {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+  transition: all 0.15s ease;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.calendar-container .fc .fc-button:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.calendar-container .fc .fc-button:focus {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0F715C;
+  outline: none;
+}
+
+.calendar-container .fc .fc-button-active,
+.calendar-container .fc .fc-button.fc-button-active {
+  background: #0F715C;
+  color: #fff;
+  border-color: #0F715C;
+}
+
+.calendar-container .fc .fc-button-active:hover {
+  background: #0a5e4c;
+  border-color: #0a5e4c;
+}
+
+/* Botão "Hoje" */
+.calendar-container .fc .fc-today-button {
+  background: #0F715C;
+  color: #fff;
+  border-color: #0F715C;
+  font-weight: 600;
+}
+
+.calendar-container .fc .fc-today-button:hover {
+  background: #0a5e4c;
+}
+
+.calendar-container .fc .fc-today-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Setas prev/next */
+.calendar-container .fc .fc-prev-button,
+.calendar-container .fc .fc-next-button {
+  padding: 6px 10px;
+}
+
+/* Grupo de botões: remove bordas duplas entre botões adjacentes */
+.calendar-container .fc .fc-button-group > .fc-button {
+  border-radius: 0;
+}
+
+.calendar-container .fc .fc-button-group > .fc-button:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.calendar-container .fc .fc-button-group > .fc-button:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.calendar-container .fc .fc-button-group > .fc-button + .fc-button {
+  margin-left: -1.5px;
+}
+
+/* ─── Cabeçalho dos dias da semana ─── */
+.calendar-container .fc .fc-col-header-cell {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #4b5563;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 10px 0;
+  background: #f9fafb;
+}
+
+/* ─── Células do dia ─── */
+.calendar-container .fc .fc-daygrid-day-number {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #374151;
+  padding: 6px 8px;
+}
+
+.calendar-container .fc .fc-day-today {
+  background: rgba(15, 113, 92, 0.06) !important;
+}
+
+.calendar-container .fc .fc-day-today .fc-daygrid-day-number {
+  color: #0F715C;
+  font-weight: 700;
+}
+
+/* ─── Eventos dentro do grid ─── */
+.calendar-container .fc .fc-daygrid-event {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 1px 4px;
+  cursor: pointer;
+}
+
+.calendar-container .fc .fc-daygrid-dot-event .fc-event-title {
+  font-weight: 500;
+}
+
+/* ─── Lista (Semana) ─── */
+.calendar-container .fc .fc-list {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.calendar-container .fc .fc-list-day-cushion {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  background: #f0f2e4;
+  color: #1a1a1a;
+}
+
+.calendar-container .fc .fc-list-event-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.calendar-container .fc .fc-list-event-time {
+  font-family: "Poppins", sans-serif;
+  color: #6b7280;
+}
+
+/* ─── "+N mais" link ─── */
+.calendar-container .fc .fc-daygrid-more-link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #0F715C;
+  font-size: 0.75rem;
+}
+
+/* ──────────────────────────────────────────────────
+   RESPONSIVO — Tablets (≤ 768px)
+   ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .calendar-container .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .calendar-container .fc .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Título: centralizado e maior destaque */
+  .calendar-container .fc .fc-toolbar-title {
+    font-size: 1.15rem;
+    text-align: center;
+    order: -1;
+  }
+
+  /* Navegação (prev, next, today): distribuída */
+  .calendar-container .fc .fc-toolbar-chunk:first-child {
+    order: 0;
+    gap: 6px;
+  }
+
+  /* Botões de view (mês, semana, dia): largura total */
+  .calendar-container .fc .fc-toolbar-chunk:last-child {
+    order: 1;
+  }
+
+  .calendar-container .fc .fc-toolbar-chunk:last-child .fc-button-group {
+    display: flex;
+    width: 100%;
+  }
+
+  .calendar-container .fc .fc-toolbar-chunk:last-child .fc-button-group > .fc-button {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ──────────────────────────────────────────────────
+   RESPONSIVO — Mobile (≤ 480px)
+   ────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .calendar-container .fc .fc-toolbar-title {
+    font-size: 1.05rem;
+  }
+
+  .calendar-container .fc .fc-button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    min-height: 36px;
+  }
+
+  .calendar-container .fc .fc-prev-button,
+  .calendar-container .fc .fc-next-button {
+    padding: 5px 8px;
+  }
+
+  /* Cabeçalho: abreviações de dia menores */
+  .calendar-container .fc .fc-col-header-cell {
+    font-size: 0.65rem;
+    padding: 6px 0;
+    letter-spacing: 0;
+  }
+
+  /* Número do dia: compacto */
+  .calendar-container .fc .fc-daygrid-day-number {
+    font-size: 0.75rem;
+    padding: 3px 5px;
+  }
+
+  /* Eventos: texto menor */
+  .calendar-container .fc .fc-daygrid-event {
+    font-size: 0.65rem;
+    padding: 0px 2px;
+    line-height: 1.3;
+  }
+
+  /* "+N mais": legível */
+  .calendar-container .fc .fc-daygrid-more-link {
+    font-size: 0.65rem;
+  }
+
+  /* Lista (Semana): compacta */
+  .calendar-container .fc .fc-list-day-cushion {
+    font-size: 0.8rem;
+  }
+
+  .calendar-container .fc .fc-list-event-title,
+  .calendar-container .fc .fc-list-event-time {
+    font-size: 0.8rem;
+  }
+}
+
+/* ──────────────────────────────────────────────────
+   RESPONSIVO — Mobile pequeno (≤ 360px)
+   ────────────────────────────────────────────────── */
+@media (max-width: 360px) {
+  .calendar-container .fc .fc-toolbar-title {
+    font-size: 0.95rem;
+  }
+
+  .calendar-container .fc .fc-button {
+    font-size: 0.72rem;
+    padding: 4px 7px;
+    min-height: 32px;
+  }
+
+  .calendar-container .fc .fc-col-header-cell {
+    font-size: 0.6rem;
+  }
+
+  .calendar-container .fc .fc-daygrid-day-number {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+
+  .calendar-container .fc .fc-daygrid-event {
+    font-size: 0.6rem;
+  }
 }
 
 /* ─── Modal de evento ─── */
@@ -63,6 +362,7 @@
 }
 
 .fc-modal-title {
+  font-family: "Poppins", sans-serif;
   font-size: 1.32em;
   font-weight: 700;
   margin-bottom: 6px;
@@ -72,6 +372,7 @@
 }
 
 .fc-modal-time {
+  font-family: "Poppins", sans-serif;
   color: #666;
   font-size: 1em;
   margin-bottom: 10px;
@@ -94,6 +395,7 @@
 }
 
 .fc-modal-section {
+  font-family: "Poppins", sans-serif;
   margin-bottom: 15px;
   padding-bottom: 7px;
   border-bottom: 1px solid #eee;
@@ -103,40 +405,52 @@
 
 .fc-modal-btn {
   display: inline-block;
-  background: #04a37e;
+  background: #0F715C;
   color: #fff;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
-  padding: 8px 18px;
-  border-radius: 6px;
+  padding: 10px 24px;
+  border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 1px 8px rgba(4, 163, 126, 0.13);
+  box-shadow: 0 1px 8px rgba(15, 113, 92, 0.15);
   transition: background 0.2s;
-  font-size: 1.08em;
+  font-size: 1rem;
 }
 
 .fc-modal-btn:hover {
-  background: #02735a;
+  background: #0a5e4c;
 }
 
-/* ─── Responsivo ─── */
+/* ─── Modal responsivo ─── */
 @media (max-width: 480px) {
   .fc-modal-content {
     max-width: 96vw;
     margin: 12px;
-    padding: 18px 10px 22px 10px;
+    padding: 20px 16px 24px 16px;
     min-height: 100px;
+    border-radius: 14px;
   }
 
   .fc-modal-title {
-    font-size: 1em;
+    font-size: 1.1em;
+  }
+
+  .fc-modal-time {
+    font-size: 0.9em;
   }
 
   .fc-modal-btn {
-    padding: 8px 10vw;
-    font-size: 1em;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    width: 100%;
+    text-align: center;
   }
 
   .fc-modal-img {
     max-height: 28vh;
+  }
+
+  .fc-modal-section {
+    font-size: 0.9em;
   }
 }

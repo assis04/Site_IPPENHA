@@ -149,20 +149,22 @@ export default function AgendaPage() {
   return (
     <main className="w-full min-h-screen bg-[#F0F2E4]">
       {/* Toolbar */}
-      <div className="max-w-7xl mx-auto px-6 py-6 flex items-center gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-4 sm:py-6 flex items-center gap-3 sm:gap-4">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-[#0F715C] hover:text-[#0a5a48] font-medium transition-colors"
+          className="inline-flex items-center gap-1.5 sm:gap-2 text-[#0F715C] hover:text-[#0a5a48] font-medium transition-colors text-sm sm:text-base"
         >
-          <ArrowLeft size={20} weight="bold" />
+          <ArrowLeft size={18} weight="bold" className="sm:w-5 sm:h-5" />
           Voltar
         </Link>
-        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">Agenda</h1>
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 font-[Poppins,sans-serif]">
+          Agenda
+        </h1>
       </div>
 
       {/* Calendário */}
-      <div className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="calendar-container bg-white rounded-2xl shadow-sm p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 pb-12 sm:pb-16">
+        <div className="calendar-container bg-white rounded-2xl shadow-sm p-3 sm:p-6">
           <FullCalendar
             plugins={[dayGridPlugin, listPlugin]}
             initialView="dayGridMonth"
@@ -179,6 +181,7 @@ export default function AgendaPage() {
               day: "Dia",
             }}
             height="auto"
+            dayMaxEvents={3}
             events={loadEvents}
             eventClick={handleEventClick}
             eventDidMount={handleEventDidMount}
