@@ -27,7 +27,7 @@ export default function InstagramSection({ className = "" }) {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2 rounded"
-            aria-label="Abrir perfil do Instagram IPPENHA (abre em nova aba)"
+            aria-label="Instagram da IPPENHA (abre em nova aba)"
           >
             <InstagramLogoIcon size={32} weight="fill" aria-hidden="true" />
             Instagram IPPENHA
@@ -83,7 +83,7 @@ export default function InstagramSection({ className = "" }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cursor-pointer bg-transparent text-black border border-black px-8 py-3 rounded-3xl font-medium hover:bg-black/5 transition-colors inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
-                  aria-label="Ver perfil completo no Instagram (abre em nova aba)"
+                  aria-label="Instagram da IPPENHA (abre em nova aba)"
                 >
                   <InstagramLogoIcon size={24} weight="fill" aria-hidden="true" />
                   Ver no Instagram
@@ -108,8 +108,8 @@ export default function InstagramSection({ className = "" }) {
 
 function PostCard({ post, index }) {
   const label = post.caption
-    ? `Ver post ${index + 1} no Instagram: ${post.caption.slice(0, 100)}${post.caption.length > 100 ? "…" : ""}`
-    : `Ver post ${index + 1} no Instagram`;
+    ? `Ver post ${index + 1} no Instagram: ${post.caption.slice(0, 100)}${post.caption.length > 100 ? "…" : ""} (abre em nova aba)`
+    : `Ver post ${index + 1} no Instagram (abre em nova aba)`;
 
   return (
     <a
