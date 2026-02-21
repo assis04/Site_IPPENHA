@@ -5,7 +5,7 @@ import ConexaoComDeusBlack from "../assets/ConexaoComDeusBlack.svg";
 import PenhaKids from "../assets/PenhaKids.svg";
 import Hebron from "../assets/Hebron.svg";
 import QPalavra from "../assets/QPalavra.svg";
-import Integraçao from "../assets/Integraçao.svg";
+import Integracao from "../assets/Integracao.svg";
 import EBT from "../assets/EBT.svg";
 import EtepWhite from "../assets/EtepWhite.svg";
 import Etep from "../assets/Etep.svg";
@@ -25,7 +25,7 @@ const logos = [
   { src: Hebron, alt: "Hebron" },
   { src: QPalavra, alt: "Q Palavra" },
   { src: PenhaKids, alt: "Penha Kids" },
-  { src: Integraçao, alt: "Integração" },
+  { src: Integracao, alt: "Integração" },
   { src: Etep, alt: "Etep" },
 ];
 
