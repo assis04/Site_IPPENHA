@@ -14,6 +14,7 @@ const ROUTES = [
   { path: "/confissoes-de-fe", priority: "0.7", changefreq: "yearly" },
   { path: "/contribua", priority: "0.6", changefreq: "monthly" },
   { path: "/baixe-app", priority: "0.5", changefreq: "monthly" },
+  { path: "/politica-de-privacidade", priority: "0.3", changefreq: "yearly" },
 ];
 
 function buildSitemap() {

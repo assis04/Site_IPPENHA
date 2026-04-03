@@ -14,6 +14,7 @@ import {
   SOCIAL_LINKS,
   SCHEDULEDATA,
 } from "../data/constants";
+import { useCookieConsent } from "../context/CookieConsentContext";
 
 const WARM_BG_ROUTES = ["/", "/agenda"];
 
@@ -22,6 +23,7 @@ const WARM_BG_ROUTES = ["/", "/agenda"];
  */
 export default function Footer() {
   const { pathname } = useLocation();
+  const { resetConsent } = useCookieConsent();
   const useWarmBg = WARM_BG_ROUTES.includes(pathname);
 
   return (
@@ -206,23 +208,41 @@ export default function Footer() {
 
         {/* Barra de copyright */}
         <div className="border-t border-white/20">
-          <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/70">
-            <p>
-              &copy; {new Date().getFullYear()} Igreja Presbiteriana da Penha.
-              Todos os direitos reservados.
-            </p>
-            <p>
-              Igreja filiada à{" "}
-              <a
-                href="https://www.ipb.org.br/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-white transition-colors"
-                aria-label="Igreja Presbiteriana do Brasil (abre em nova aba)"
+          <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-white/85">
+              <Link
+                to="/politica-de-privacidade"
+                className="hover:text-white underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48] rounded"
               >
-                Igreja Presbiteriana do Brasil
-              </a>
-            </p>
+                Política de Privacidade
+              </Link>
+              <button
+                type="button"
+                onClick={() => void resetConsent()}
+                aria-label="Alterar preferências de cookies"
+                className="text-sm hover:text-white underline underline-offset-2 text-left bg-transparent border-0 p-0 cursor-pointer font-inherit text-white/85 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#216F48] rounded"
+              >
+                Preferências de cookies
+              </button>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-white/70">
+              <p>
+                &copy; {new Date().getFullYear()} Igreja Presbiteriana da Penha.
+                Todos os direitos reservados.
+              </p>
+              <p>
+                Igreja filiada à{" "}
+                <a
+                  href="https://www.ipb.org.br/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white transition-colors"
+                  aria-label="Igreja Presbiteriana do Brasil (abre em nova aba)"
+                >
+                  Igreja Presbiteriana do Brasil
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
