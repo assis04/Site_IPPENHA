@@ -1,13 +1,13 @@
 {
   "name": "siteippenha",
   "private": true,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "generate-og-image": "node scripts/generate-og-image.js",
-    "prebuild": "node scripts/generate-sitemap.js && node scripts/generate-og-image.js",
+    "prebuild": "node scripts/generate-sitemap.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"

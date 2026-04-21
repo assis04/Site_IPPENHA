@@ -1,0 +1,170 @@
+RewriteOptions inherit
+DirectoryIndex index.html
+
+# ─── Rewrite Rules ───
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Bloquear acesso a caminhos sensíveis
+  RewriteRule ^\.git(/|$) - [F,L]
+  RewriteRule ^\.env - [F,L]
+  RewriteRule ^node_modules(/|$) - [F,L]
+  RewriteRule \.map$ - [F,L]
+
+  # 2. Forçar HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # 3. Redirect 301 .com.br → .org.br
+  RewriteCond %{HTTP_HOST} ^(www\.)?ippenha\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://ippenha.org.br/$1 [R=301,L]
+
+  # 4. Passthrough — PHP proxies e WordPress
+  RewriteRule ^wp-content/calendar-api/ - [L]
+  RewriteRule ^wp-content/instagram-api/ - [L]
+  RewriteRule ^wp-content/consent-api/ - [L]
+  RewriteRule ^wp-admin - [L]
+  RewriteRule ^wp-login\.php - [L]
+  RewriteRule ^wp-json - [L]
+  RewriteRule ^wp-cron\.php - [L]
+  RewriteRule ^xmlrpc\.php - [L]
+
+  # 5. Arquivos e diretórios existentes — servir diretamente
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 6. SPA fallback (React Router)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ─── Security Headers ───
+<IfModule mod_headers.c>
+  Header set Content-Security-Policy "\
+    default-src 'self'; \
+    script-src 'self'; \
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
+    font-src 'self' https://fonts.gstatic.com; \
+    img-src 'self' data: https://assets.eklesiaonline.com.br https://*.cdninstagram.com https://*.fbcdn.net; \
+    frame-src https://www.youtube.com; \
+    frame-ancestors 'self'; \
+    connect-src 'self'; \
+    object-src 'none'; \
+    base-uri 'self'; \
+    form-action 'self'; \
+    upgrade-insecure-requests"
+
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# BEGIN SpeedyCacheheaders
+FileETag None
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+<FilesMatch "\.(html)$">
+  <IfModule mod_headers.c>
+    Header set x-speedycache-source "Server"
+    Header set Cache-Tag "ippenha.com.br"
+    Header set CDN-Cache-Control "max-age=1296000"
+    Header set Cache-Control "public"
+    Header unset Pragma
+    Header unset Last-Modified
+  </IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(css|htc|js|asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|eot|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|json|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|otf|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|svg|svgz|swf|tar|tif|tiff|ttf|ttc|wav|wma|wri|xla|xls|xlsx|xlt|xlw|zip)$">
+  <IfModule mod_headers.c>
+    Header unset Pragma
+    Header set Cache-Control "public"
+  </IfModule>
+</FilesMatch>
+# END SpeedyCacheheaders
+
+# BEGIN Gzipspeedycache
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE font/woff
+  AddOutputFilterByType DEFLATE font/woff2
+  AddOutputFilterByType DEFLATE text/js
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/font-woff2
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+</IfModule>
+# END Gzipspeedycache
+
+# BEGIN LBCspeedycache
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresDefault A0
+  ExpiresByType text/css A31536000
+  ExpiresByType text/javascript A31536000
+  ExpiresByType font/ttf A31536000
+  ExpiresByType font/otf A31536000
+  ExpiresByType font/woff A31536000
+  ExpiresByType font/woff2 A31536000
+  ExpiresByType image/jpg A31536000
+  ExpiresByType image/jpeg A31536000
+  ExpiresByType image/png A31536000
+  ExpiresByType image/gif A31536000
+  ExpiresByType image/webp A31536000
+  ExpiresByType image/x-icon A31536000
+  ExpiresByType image/svg+xml A31536000
+  ExpiresByType image/vnd.microsoft.icon A31536000
+  ExpiresByType video/ogg A31536000
+  ExpiresByType video/mp4 A31536000
+  ExpiresByType video/webm A31536000
+  ExpiresByType audio/ogg A31536000
+  ExpiresByType application/pdf A31536000
+  ExpiresByType application/javascript A31536000
+  ExpiresByType application/x-javascript A31536000
+  ExpiresByType application/x-font-ttf A31536000
+  ExpiresByType application/x-font-woff A31536000
+  ExpiresByType application/font-woff A31536000
+  ExpiresByType application/font-woff2 A31536000
+  ExpiresByType application/vnd.ms-fontobject A31536000
+</IfModule>
+# END LBCspeedycache
+
+# BEGIN WEBPspeedycache
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} \.(jpe?g|png|gif)$
+  RewriteCond %{DOCUMENT_ROOT}/$1.webp -f
+  RewriteRule ^(.+)\.(jpe?g|png|gif)$ $1.webp [T=image/webp,L]
+</IfModule>
+<IfModule mod_headers.c>
+  Header append Vary Accept env=REDIRECT_accept
+</IfModule>
+AddType image/webp .webp
+# END WEBPspeedycache
+
+# BEGIN LiteSpeed
+<IfModule Litespeed>
+  SetEnv noabort 1
+</IfModule>
+# END LiteSpeed

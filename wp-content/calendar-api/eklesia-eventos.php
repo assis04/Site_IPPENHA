@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Proxy da API Eklesia — WordPress.
  *
@@ -12,17 +14,20 @@
  *   GET  eklesia-eventos.php?codEvento=N  → detalhes de um evento
  */
 
-// Carrega o WordPress para usar wp_remote_get / wp_remote_post
-require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
+require_once __DIR__ . '/../api-common/json-proxy-bootstrap.php';
 
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+ippenha_public_api_handle_preflight();
+ippenha_public_api_json_headers();
 
-// Responde preflight CORS
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    http_response_code(405);
+    echo json_encode(['error' => 'method_not_allowed']);
+    exit;
+}
+
+if (!ippenha_public_api_rate_limit_ok('calendar', 60, 600)) {
+    http_response_code(429);
+    echo json_encode(['error' => 'rate_limited']);
     exit;
 }
 
@@ -95,11 +100,12 @@ try {
     } else {
         $auth_status = wp_remote_retrieve_response_code($response_token);
         $auth_body   = wp_remote_retrieve_body($response_token);
-        error_log("[Eklesia][Auth] Status: $auth_status | Body: $auth_body");
+        // Nunca registar o corpo da auth — pode conter token de acesso.
+        error_log('[Eklesia][Auth] Status: ' . $auth_status . ' | ok: ' . ($auth_status === 200 ? '1' : '0'));
 
         if ($auth_status === 200) {
             $json_token = json_decode($auth_body, true);
-            $access_token = $json_token['token'] ?? '';
+            $access_token = is_array($json_token) ? (string) ($json_token['token'] ?? '') : '';
         }
     }
 

@@ -1,20 +1,22 @@
 import { InstagramLogoIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import { useInstagramFeed } from "../hooks/useInstagramFeed";
 import { INSTAGRAM_PROFILE_URL } from "../data/constants";
+import { useCookieConsent } from "../context/CookieConsentContext";
 
 /**
  * Seção do feed do Instagram.
  * Exibe grid de posts com lazy-loading, paginação e fallback de erro.
  */
 export default function InstagramSection({ className = "" }) {
+  const { allowThirdParty } = useCookieConsent();
   const { posts, loading, error, displayedCount, setDisplayedCount, retry } =
-    useInstagramFeed();
+    useInstagramFeed({ enabled: allowThirdParty });
 
   return (
     <section
       className={`w-full min-h-[90vh] bg-white bg-[url('../assets/bgInstagram.svg')] py-12 lg:py-16 px-4 lg:px-8 bg-no-repeat bg-top bg-cover ${className}`.trim()}
       aria-labelledby="instagram-heading"
-      aria-label="Feed de posts do Instagram"
     >
       <div className="max-w-7xl px-6 mx-auto">
         <h2
@@ -34,15 +36,32 @@ export default function InstagramSection({ className = "" }) {
           </a>
         </h2>
 
-        {/* Estado: carregando */}
-        {loading && (
+        {!allowThirdParty && (
+          <div
+            className="max-w-xl mx-auto text-center py-12 px-4 rounded-2xl bg-[#F0F2E4] border border-[#216F48]/20"
+            role="status"
+            aria-live="polite"
+          >
+            <p className="text-gray-800 text-sm leading-relaxed">
+              Para ver o feed do Instagram aqui, aceite cookies em{" "}
+              <strong>Preferências de cookies</strong> no rodapé.
+            </p>
+            <Link
+              to="/politica-de-privacidade#cookies"
+              className="inline-block mt-4 text-sm text-[#216F48] font-medium underline focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2 rounded"
+            >
+              Saiba mais
+            </Link>
+          </div>
+        )}
+
+        {allowThirdParty && loading && (
           <p className="text-center text-gray-600 py-12" role="status" aria-live="polite">
             Carregando posts...
           </p>
         )}
 
-        {/* Estado: erro */}
-        {error && (
+        {allowThirdParty && error && (
           <div className="text-center py-12" role="alert" aria-live="assertive">
             <p className="text-red-600 mb-4">{error}</p>
             <button
@@ -56,8 +75,7 @@ export default function InstagramSection({ className = "" }) {
           </div>
         )}
 
-        {/* Estado: posts carregados */}
-        {!loading && !error && posts.length > 0 && (
+        {allowThirdParty && !loading && !error && posts.length > 0 && (
           <>
             <div className="w-full min-h-70 sm:min-h-100 lg:min-h-161 rounded-lg overflow-hidden">
               <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-11.5 p-2 sm:p-3 lg:px-0 lg:py-4">
@@ -93,8 +111,7 @@ export default function InstagramSection({ className = "" }) {
           </>
         )}
 
-        {/* Estado: vazio */}
-        {!loading && !error && posts.length === 0 && (
+        {allowThirdParty && !loading && !error && posts.length === 0 && (
           <p className="text-center text-gray-600 py-12" role="status">
             Nenhum post encontrado.
           </p>

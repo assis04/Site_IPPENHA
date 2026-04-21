@@ -57,7 +57,8 @@ function formatTimeRange(start, end, allDay) {
 
 function isValidLink(link) {
   if (!link) return false;
-  return /^(https?:\/\/|\/\/|\/)/i.test(String(link).trim());
+  const trimmed = String(link).trim();
+  return /^(https:\/\/|\/\/|\/)/i.test(trimmed) && !/^javascript:/i.test(trimmed);
 }
 
 /* ─── Componente principal ─── */
@@ -276,7 +277,10 @@ function EventDetails({ details }) {
         <div
           className="fc-modal-section"
           dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(ev.informacoesDivulgacao),
+            __html: DOMPurify.sanitize(ev.informacoesDivulgacao, {
+              ALLOWED_TAGS: ["b", "strong", "i", "em", "u", "br", "p", "ul", "ol", "li", "a", "span"],
+              ALLOWED_ATTR: ["href", "target", "rel"],
+            }),
           }}
         />
       )}

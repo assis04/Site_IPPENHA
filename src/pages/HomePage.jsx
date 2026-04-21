@@ -13,7 +13,10 @@ import PastorsSection from "../components/PastorsSection";
 import InstagramSection from "../components/InstagramSection";
 import CarroselCultos from "../components/CarroselCultos";
 import { CONTACT, SOCIAL_LINKS, SCHEDULEDATA } from "../data/constants";
+import { useCookieConsent } from "../context/CookieConsentContext";
 import { useRef } from "react";
+
+const WELCOME_VIDEO_YOUTUBE_ID = "bEMX8tceKR0";
 
 /**
  * Página inicial — contém Hero, Cards, Bem-vindo, Ministérios, Pastores e Instagram.
@@ -30,6 +33,7 @@ const logos = [
 ];
 
 export default function HomePage() {
+  const { allowThirdParty } = useCookieConsent();
   const carouselRef = useRef(null);
   const isScrolling = useRef(false);
 
@@ -145,13 +149,36 @@ export default function HomePage() {
       <section className="w-full bg-[#F0F2E4] ">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-12 items-center ">
           <div className="w-full lg:w-1/2 aspect-video">
-            <iframe
-              src="https://www.youtube.com/embed/bEMX8tceKR0"
-              title="Vídeo de Boas Vindas"
-              loading="lazy"
-              className="w-full h-full rounded-2xl shadow-2xl border-none"
-              allowFullScreen
-            ></iframe>
+            {allowThirdParty ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${WELCOME_VIDEO_YOUTUBE_ID}`}
+                title="Vídeo de Boas Vindas"
+                loading="lazy"
+                className="w-full h-full rounded-2xl shadow-2xl border-none"
+                allowFullScreen
+              />
+            ) : (
+              <div
+                className="w-full h-full min-h-[200px] rounded-2xl shadow-2xl border border-[#216F48]/20 bg-[#F0F2E4] flex flex-col items-center justify-center gap-4 px-6 py-8 text-center"
+                role="status"
+                aria-live="polite"
+              >
+                <p className="text-sm text-gray-800 max-w-sm">
+                  Para assistir ao vídeo aqui, aceite cookies em{" "}
+                  <strong>Preferências de cookies</strong> no rodapé.
+                </p>
+                <a
+                  href={`https://www.youtube.com/watch?v=${WELCOME_VIDEO_YOUTUBE_ID}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#216F48] text-white text-sm font-medium px-5 py-3 rounded-full hover:bg-[#1a5a3a] transition-colors focus:outline-none focus:ring-2 focus:ring-[#216F48] focus:ring-offset-2"
+                  aria-label="Assistir vídeo de boas-vindas no YouTube (abre em nova aba)"
+                >
+                  <PlayIcon size={22} weight="fill" aria-hidden="true" />
+                  Assistir no YouTube
+                </a>
+              </div>
+            )}
           </div>
           <div className=" flex flex-col gap-3 py-6 lg:w-150 text-black px-6">
             <h2 className="text-4xl font-bold text-black">

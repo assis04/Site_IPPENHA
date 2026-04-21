@@ -45,11 +45,13 @@ const MESSAGE_FALLBACK = "Falha ao carregar feed";
 /**
  * Hook que carrega o feed do Instagram via proxy PHP (token fica no servidor).
  *
+ * @param {{ enabled?: boolean }} options — se enabled for false, não busca dados (LGPD / cookies).
  * @returns {{ posts: array, loading: boolean, error: string | null, displayedCount: number, setDisplayedCount: function, retry: function }}
  */
-export function useInstagramFeed() {
+export function useInstagramFeed(options = {}) {
+  const { enabled = true } = options;
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(enabled);
   const [error, setError] = useState(null);
   const [displayedCount, setDisplayedCount] = useState(6);
   const [retryKey, setRetryKey] = useState(0);
@@ -63,13 +65,21 @@ export function useInstagramFeed() {
   }, []);
 
   useEffect(() => {
+    if (!enabled) {
+      setPosts([]);
+      setLoading(false);
+      setError(null);
+      return undefined;
+    }
+
     const cached = getCached();
     if (cached) {
       setPosts(cached);
       setLoading(false);
-      return;
+      return undefined;
     }
 
+    setLoading(true);
     const controller = new AbortController();
     abortRef.current = controller;
 
@@ -104,7 +114,7 @@ export function useInstagramFeed() {
       .finally(() => setLoading(false));
 
     return () => controller.abort();
-  }, [retryKey]);
+  }, [retryKey, enabled]);
 
   return {
     posts,

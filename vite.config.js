@@ -18,6 +18,10 @@ export default defineConfig({
         target: 'http://ippenha.local',
         changeOrigin: true,
       },
+      '/wp-content/consent-api': {
+        target: 'http://ippenha.local',
+        changeOrigin: true,
+      },
     },
   },
 })

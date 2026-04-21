@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Proxy da API do Instagram Graph — WordPress.
  *
@@ -12,15 +14,20 @@
  *   GET instagram-feed.php → retorna últimos posts do feed
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
+require_once __DIR__ . '/../api-common/json-proxy-bootstrap.php';
 
-header('Content-Type: application/json; charset=utf-8');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+ippenha_public_api_handle_preflight();
+ippenha_public_api_json_headers();
 
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(204);
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+    http_response_code(405);
+    echo json_encode(['error' => 'method_not_allowed']);
+    exit;
+}
+
+if (!ippenha_public_api_rate_limit_ok('instagram', 100, 600)) {
+    http_response_code(429);
+    echo json_encode(['error' => 'rate_limited']);
     exit;
 }
 
@@ -28,8 +35,9 @@ $user_id = defined('INSTAGRAM_USER_ID') ? INSTAGRAM_USER_ID : '';
 $token   = defined('INSTAGRAM_ACCESS_TOKEN') ? INSTAGRAM_ACCESS_TOKEN : '';
 
 if (empty($user_id) || empty($token)) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Credenciais do Instagram não configuradas no servidor.']);
+    error_log('[Instagram] Credenciais não configuradas (INSTAGRAM_USER_ID / INSTAGRAM_ACCESS_TOKEN).');
+    http_response_code(503);
+    echo json_encode(['error' => 'Serviço temporariamente indisponível.']);
     exit;
 }
 
@@ -61,7 +69,8 @@ if ($status === 429) {
 }
 
 if ($status !== 200) {
-    error_log("[Instagram] Status: $status | Body: $body");
+    $snippet = strlen($body) > 400 ? substr($body, 0, 400) . '…' : $body;
+    error_log('[Instagram] Status: ' . $status . ' | Body snippet: ' . $snippet);
     http_response_code(502);
     echo json_encode(['error' => 'Erro na API do Instagram.']);
     exit;

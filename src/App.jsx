@@ -10,6 +10,8 @@ import BaixeAppPage from "./pages/BaixeAppPage";
 import ConfissoesPage from "./pages/ConfissoesPage";
 import ContribuaPage from "./pages/ContribuaPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import CookieConsentBanner from "./components/CookieConsentBanner";
 
 function App() {
   return (
@@ -31,10 +33,12 @@ function App() {
           <Route path="/pastores/:slug" element={<PastorPage />} />
           <Route path="/contribua" element={<ContribuaPage />} />
           <Route path="/baixe-app" element={<BaixeAppPage />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       <Footer />
+      <CookieConsentBanner />
     </>
   );
 }

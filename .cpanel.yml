@@ -1,10 +1,14 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home1/amaur540/public_html/
+    - export DEPLOYPATH=$HOME/public_html/
     - /bin/cp -r dist/* $DEPLOYPATH
     - /bin/cp dist/.htaccess $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH/wp-content/api-common
+    - /bin/cp -r wp-content/api-common/* $DEPLOYPATH/wp-content/api-common/
     - /bin/mkdir -p $DEPLOYPATH/wp-content/calendar-api
     - /bin/cp -r wp-content/calendar-api/* $DEPLOYPATH/wp-content/calendar-api/
     - /bin/mkdir -p $DEPLOYPATH/wp-content/instagram-api
     - /bin/cp -r wp-content/instagram-api/* $DEPLOYPATH/wp-content/instagram-api/
+    - /bin/mkdir -p $DEPLOYPATH/wp-content/consent-api
+    - /bin/cp -r wp-content/consent-api/* $DEPLOYPATH/wp-content/consent-api/

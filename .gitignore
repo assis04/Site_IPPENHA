@@ -14,7 +14,16 @@ dist.zip
 .vite
 *.local
 .env
-.env.local
+.env.*
+!.env.example
+
+# Private keys / credentials
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials.json
 
 # Editor directories and files
 .vscode/*
