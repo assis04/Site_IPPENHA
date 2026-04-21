@@ -17,18 +17,14 @@ const IPPENHA_PUBLIC_API_PROD_ORIGINS = [
     'https://www.ippenha.com.br',
 ];
 
-const IPPENHA_PUBLIC_API_DEV_ORIGINS = [
-    'http://localhost:5173',
-    'http://localhost:4173',
-];
+function ippenha_public_api_is_local_dev_origin(string $origin): bool
+{
+    return (bool) preg_match('#^http://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$#', $origin);
+}
 
 function ippenha_public_api_allowed_origins(): array
 {
-    $origins = IPPENHA_PUBLIC_API_PROD_ORIGINS;
-    if (defined('WP_DEBUG') && WP_DEBUG) {
-        $origins = array_merge($origins, IPPENHA_PUBLIC_API_DEV_ORIGINS);
-    }
-    return $origins;
+    return IPPENHA_PUBLIC_API_PROD_ORIGINS;
 }
 
 function ippenha_public_api_resolve_origin(): ?string
@@ -38,7 +34,13 @@ function ippenha_public_api_resolve_origin(): ?string
         return null;
     }
     $origin = rtrim($origin, '/');
-    return in_array($origin, ippenha_public_api_allowed_origins(), true) ? $origin : null;
+    if (in_array($origin, ippenha_public_api_allowed_origins(), true)) {
+        return $origin;
+    }
+    if (ippenha_public_api_is_local_dev_origin($origin)) {
+        return $origin;
+    }
+    return null;
 }
 
 function ippenha_public_api_json_headers(): void

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Bootstrap compartilhado — LGPD / preferências de cookies.
  * Requer WordPress (wp-load.php) para $wpdb e utilitários.
@@ -6,8 +8,6 @@
  * Dados armazenados: token opaco (64 hex) + valor do consentimento.
  * Não armazenamos nome, e-mail nem IP em tabela (minimização).
  */
-
-declare(strict_types=1);
 
 if (!defined('ABSPATH')) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php';
@@ -41,19 +41,14 @@ const IPPENHA_CONSENT_PROD_ORIGINS = [
     'https://www.ippenha.com.br',
 ];
 
-/** Origens adicionais para desenvolvimento local. */
-const IPPENHA_CONSENT_DEV_ORIGINS = [
-    'http://localhost:5173',
-    'http://localhost:4173',
-];
+function ippenha_consent_is_local_dev_origin(string $origin): bool
+{
+    return (bool) preg_match('#^http://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$#', $origin);
+}
 
 function ippenha_consent_allowed_origins(): array
 {
-    $origins = IPPENHA_CONSENT_PROD_ORIGINS;
-    if (defined('WP_DEBUG') && WP_DEBUG) {
-        $origins = array_merge($origins, IPPENHA_CONSENT_DEV_ORIGINS);
-    }
-    return $origins;
+    return IPPENHA_CONSENT_PROD_ORIGINS;
 }
 
 /**
@@ -66,7 +61,13 @@ function ippenha_consent_resolve_origin(): ?string
         return null;
     }
     $origin = rtrim($origin, '/');
-    return in_array($origin, ippenha_consent_allowed_origins(), true) ? $origin : null;
+    if (in_array($origin, ippenha_consent_allowed_origins(), true)) {
+        return $origin;
+    }
+    if (ippenha_consent_is_local_dev_origin($origin)) {
+        return $origin;
+    }
+    return null;
 }
 
 /**

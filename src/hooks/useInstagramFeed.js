@@ -2,7 +2,14 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { isSafeUrl } from "../utils/safeUrl";
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
-const PROXY_URL = "/wp-content/instagram-api/instagram-feed.php";
+const INSTAGRAM_FEED_PATH = "/wp-content/instagram-api/instagram-feed.php";
+
+/** Posts pedidos à API (máximo visível no site). */
+export const INSTAGRAM_FEED_FETCH_LIMIT = 27;
+/** Grid inicial e incremento do "Ver mais". */
+export const INSTAGRAM_PAGE_SIZE = 9;
+/** Teto de posts mostrados no site; depois mostra-se o link para o Instagram. */
+export const INSTAGRAM_MAX_VISIBLE = 27;
 
 const feedCache = { data: null, timestamp: 0 };
 
@@ -53,7 +60,7 @@ export function useInstagramFeed(options = {}) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(enabled);
   const [error, setError] = useState(null);
-  const [displayedCount, setDisplayedCount] = useState(6);
+  const [displayedCount, setDisplayedCount] = useState(INSTAGRAM_PAGE_SIZE);
   const [retryKey, setRetryKey] = useState(0);
   const abortRef = useRef(null);
 
@@ -75,6 +82,7 @@ export function useInstagramFeed(options = {}) {
     const cached = getCached();
     if (cached) {
       setPosts(cached);
+      setDisplayedCount(Math.min(INSTAGRAM_PAGE_SIZE, cached.length));
       setLoading(false);
       return undefined;
     }
@@ -83,7 +91,9 @@ export function useInstagramFeed(options = {}) {
     const controller = new AbortController();
     abortRef.current = controller;
 
-    fetch(`${PROXY_URL}?limit=12`, { signal: controller.signal })
+    fetch(`${INSTAGRAM_FEED_PATH}?limit=${INSTAGRAM_FEED_FETCH_LIMIT}`, {
+      signal: controller.signal,
+    })
       .then((response) => {
         if (response.status === 429) {
           throw { isRateLimit: true };
@@ -102,6 +112,7 @@ export function useInstagramFeed(options = {}) {
         const sanitized = sanitizePosts(raw);
         setCached(sanitized);
         setPosts(sanitized);
+        setDisplayedCount(Math.min(INSTAGRAM_PAGE_SIZE, sanitized.length));
       })
       .catch((err) => {
         if (err?.name === "AbortError") return;
