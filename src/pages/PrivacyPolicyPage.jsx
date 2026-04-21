@@ -3,168 +3,98 @@ import ContentPageLayout from "../components/ContentPageLayout";
 import { CONTACT } from "../data/constants";
 
 /**
- * Política de Privacidade (LGPD) — modelo para revisão jurídica.
+ * Política de Privacidade e Uso de Imagem — texto institucional com complemento
+ * mínimo sobre o site (cookies, integrações digitais).
  */
 export default function PrivacyPolicyPage() {
+  const headingClass =
+    "text-xl font-semibold text-[#216F48] scroll-mt-24 font-[Poppins,sans-serif]";
+
   return (
     <ContentPageLayout
-      title="Política de Privacidade"
-      subtitle="Lei Geral de Proteção de Dados (Lei nº 13.709/2018)"
-      highlight="Este texto tem caráter informativo. Recomendamos que seja revisado por profissional habilitado (OAB) conforme a realidade da igreja e dos fornecedores de serviço."
+      title="Política de Privacidade e Uso de Imagem"
+      subtitle="LGPD (Lei nº 13.709/2018) e Lei de Direitos Autorais (Lei nº 9.610/1998)"
     >
       <section className="space-y-8">
         <p>
-          A <strong>Igreja Presbiteriana da Penha</strong> (“nós”, “nosso site”) respeita a privacidade dos
-          visitantes e se compromete com a transparência sobre o tratamento de dados pessoais, em conformidade
-          com a Lei Geral de Proteção de Dados Pessoais (LGPD).
+          A <strong>Igreja Presbiteriana da Penha</strong>, em parceria com a plataforma Eklesia, compromete-se a
+          tratar com ética e segurança todas as informações pessoais e imagens coletadas em suas atividades, cultos,
+          eventos e canais digitais, conforme a LGPD (Lei nº 13.709/2018) e a Lei de Direitos Autorais (Lei nº
+          9.610/1998).
         </p>
 
-        <h2
-          id="controlador"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          1. Controlador e contato
+        <h2 id="coleta" className={headingClass}>
+          1. Coleta de informações
+        </h2>
+        <p>A coleta ocorre quando o participante:</p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>preenche formulários de cadastro, inscrição ou voluntariado;</li>
+          <li>utiliza o aplicativo ou site da igreja;</li>
+          <li>participa de cultos, eventos ou transmissões online.</li>
+        </ul>
+        <p>Os dados podem incluir nome, CPF, e-mail, telefone, endereço, data de nascimento e imagem.</p>
+
+        <h2 id="finalidade" className={headingClass}>
+          2. Finalidade
+        </h2>
+        <p>As informações são usadas para:</p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>gestão administrativa e pastoral da igreja;</li>
+          <li>comunicação de atividades, eventos e campanhas;</li>
+          <li>registro histórico e estatístico;</li>
+          <li>divulgação de conteúdos institucionais, transmissões e materiais audiovisuais.</li>
+        </ul>
+
+        <h2 id="imagem" className={headingClass}>
+          3. Uso de imagem e voz
         </h2>
         <p>
-          <strong>Controlador:</strong> Igreja Presbiteriana da Penha.
-          <br />
-          <strong>Endereço:</strong> {CONTACT.address}, {CONTACT.city}.
-          <br />
-          <strong>Canal para exercício de direitos e dúvidas sobre privacidade:</strong>{" "}
+          Ao ingressar nos ambientes da igreja ou participar de suas atividades, o membro ou visitante autoriza, de
+          forma gratuita, o uso de sua imagem, voz e testemunhos em transmissões, fotos, vídeos e materiais de
+          divulgação, em mídias digitais ou impressas. Esse consentimento é livre, informado e inequívoco, podendo
+          ser revogado a qualquer momento mediante solicitação formal à igreja.
+        </p>
+
+        <h2 id="seguranca" className={headingClass}>
+          4. Acesso e segurança
+        </h2>
+        <p>
+          O acesso aos dados é restrito a pessoas autorizadas, mediante compromisso de confidencialidade. A igreja
+          adota medidas de segurança compatíveis com as melhores práticas de proteção de dados.
+        </p>
+
+        <h2 id="direitos" className={headingClass}>
+          5. Direitos do titular
+        </h2>
+        <p>O titular pode, a qualquer tempo, solicitar:</p>
+        <ul className="list-disc pl-6 space-y-2">
+          <li>confirmação da existência de tratamento;</li>
+          <li>correção, atualização ou exclusão de dados;</li>
+          <li>revogação de consentimento.</li>
+        </ul>
+        <p>
+          As solicitações devem ser feitas pelos canais oficiais da igreja. Neste site, você pode utilizar o contato
+          por e-mail:{" "}
           <a href={`mailto:${CONTACT.email}`} className="text-[#216F48] underline">
             {CONTACT.email}
           </a>
-          .
+          , ou o endereço: {CONTACT.address}, {CONTACT.city}.
         </p>
 
-        <h2
-          id="dados"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          2. Quais dados podem ser tratados
+        <h2 id="cookies" className={headingClass}>
+          6. Site e dados neste ambiente digital
         </h2>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>
-            <strong>Dados de navegação:</strong> informações técnicas enviadas pelo navegador (como endereço IP,
-            tipo de dispositivo e páginas acessadas), quando necessárias para segurança, estatísticas agregadas ou
-            funcionamento do site.
-          </li>
-          <li>
-            <strong>Dados fornecidos por você:</strong> quando entrar em contato por e-mail, telefone ou
-            inscrições em serviços de terceiros (por exemplo, sistemas de gestão de eventos) vinculados a links do
-            site.
-          </li>
-          <li>
-            <strong>Cookies e armazenamento local:</strong> utilizamos armazenamento no seu dispositivo apenas
-            para registrar sua preferência quanto ao carregamento de conteúdo de terceiros (veja a seção Cookies).
-          </li>
-        </ul>
-
-        <h2
-          id="finalidades"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          3. Finalidades e bases legais (LGPD)
-        </h2>
-        <p>
-          Tratamos dados pessoais para: funcionamento e melhoria do site; cumprimento de obrigações legais;
-          comunicação com interessados; e, quando aplicável, com base no <strong>consentimento</strong> para
-          incorporação de conteúdo de terceiros (YouTube, exibição do feed do Instagram). A base legal específica
-          pode variar conforme cada atividade — detalhes adicionais podem ser solicitados pelo canal indicado
-          acima.
+        <p className="text-sm text-gray-700">
+          Complemento específico ao uso deste site: utilizamos medidas como conexão HTTPS e registro da sua escolha
+          quanto ao carregamento incorporado de vídeo (YouTube) e feed (Instagram/Meta), mediante consentimento
+          obtido pelo banner de cookies, associado a identificador técnico em cookie de primeira parte (HttpOnly), conforme
+          descrito no rodapé em “Preferências de cookies”. O site pode carregar fontes via Google Fonts e integrar
+          agenda ou inscrições com sistemas de gestão (por exemplo, Eklesia); nesses casos aplicam-se também as
+          políticas dos respectivos fornecedores.
         </p>
 
-        <h2
-          id="terceiros"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          4. Fornecedores e conteúdo de terceiros
-        </h2>
-        <p>O site pode integrar ou apontar para serviços de terceiros, entre eles:</p>
-        <ul className="list-disc pl-6 space-y-2">
-          <li>
-            <strong>Google Fonts</strong> — carregamento de fontes a partir dos domínios do Google.
-          </li>
-          <li>
-            <strong>YouTube (Google)</strong> — vídeo incorporado na página inicial, quando você aceita “conteúdo de
-            terceiros”.
-          </li>
-          <li>
-            <strong>Meta / Instagram</strong> — feed exibido no site mediante API e imagens hospedadas na rede
-            social, quando você aceita “conteúdo de terceiros”.
-          </li>
-          <li>
-            <strong>Eklesia / gestão de eventos</strong> — agenda e links de inscrição podem direcionar a
-            plataformas de terceiros, que possuem políticas próprias.
-          </li>
-          <li>
-            <strong>Hospedagem e infraestrutura</strong> — conforme contrato com o provedor do site.
-          </li>
-        </ul>
-        <p>
-          Recomendamos a leitura das políticas de privacidade desses fornecedores. Não controlamos o tratamento de
-          dados feito diretamente por eles.
-        </p>
-
-        <h2
-          id="cookies"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          5. Cookies e preferências
-        </h2>
-        <p>
-          Ao visitar o site, você pode escolher entre manter apenas o necessário ao funcionamento básico ou também
-          permitir o carregamento de incorporações (YouTube) e do feed do Instagram. A preferência é registrada em
-          nosso servidor (banco de dados), associada a um identificador técnico armazenado em cookie de primeira
-          parte (HttpOnly, não acessível por scripts). Um espelho pode ser mantido no armazenamento local do
-          navegador apenas para funcionamento offline ou falha temporária da API. Você pode alterar ou revogar pelo
-          link <strong>Preferências de cookies</strong> no rodapé.
-        </p>
-
-        <h2
-          id="direitos"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          6. Direitos dos titulares (art. 18 da LGPD)
-        </h2>
-        <p>
-          Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, eliminação, portabilidade,
-          informação sobre compartilhamento e revogação de consentimento, quando aplicável, observadas as exceções
-          legais. Envie seu pedido para o e-mail indicado na seção “Controlador e contato”.
-        </p>
-
-        <h2
-          id="seguranca"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          7. Segurança e retenção
-        </h2>
-        <p>
-          Adotamos medidas técnicas e organizacionais compatíveis com o risco, como uso de HTTPS e boas práticas no
-          desenvolvimento. Os prazos de retenção dependem da finalidade (por exemplo, mensagens de contato,
-          registros exigidos em lei ou política do provedor).
-        </p>
-
-        <h2
-          id="alteracoes"
-          className="text-xl font-semibold text-[#216F48] scroll-mt-24"
-          style={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          8. Alterações
-        </h2>
-        <p>
-          Esta política pode ser atualizada. A data da versão vigente deve ser indicada abaixo após revisões
-          formais pela liderança da igreja.
-        </p>
-        <p className="text-sm text-gray-600">
-          <strong>Versão:</strong> 1.0 (março de 2026).
+        <p className="text-sm text-gray-600 pt-2">
+          <strong>Última atualização:</strong> abril de 2026.
         </p>
 
         <p className="pt-4">
