@@ -108,7 +108,13 @@ export function wpDevProxyPlugin(envViteWpTarget) {
           return;
         }
 
-        void handleWpContent(req, res, dest, base.hostname).catch(() => {
+        void handleWpContent(
+          req,
+          res,
+          dest,
+          base.hostname,
+          allowedOrigin
+        ).catch(() => {
           res.statusCode = 502;
           res.setHeader("Content-Type", "text/plain; charset=utf-8");
           res.end("Bad gateway (WordPress dev proxy)");
@@ -123,8 +129,9 @@ export function wpDevProxyPlugin(envViteWpTarget) {
  * @param {import('node:http').ServerResponse} res
  * @param {URL} dest
  * @param {string} wpHost
+ * @param {string} allowedOrigin — rejeita resposta se o fetch seguiu redirect para outro host (SSRF/redirect)
  */
-async function handleWpContent(req, res, dest, wpHost) {
+async function handleWpContent(req, res, dest, wpHost, allowedOrigin) {
   if (req.method === "OPTIONS") {
     const origin = req.headers.origin || "";
     res.statusCode = 204;
@@ -155,6 +162,22 @@ async function handleWpContent(req, res, dest, wpHost) {
     body: body && method !== "GET" && method !== "HEAD" ? body : undefined,
     redirect: "follow",
   });
+
+  let finalOrigin;
+  try {
+    finalOrigin = new URL(r.url).origin;
+  } catch {
+    res.statusCode = 502;
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.end("Bad gateway (invalid upstream URL after redirect)");
+    return;
+  }
+  if (finalOrigin !== allowedOrigin) {
+    res.statusCode = 502;
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.end("Bad gateway (redirect outside WordPress dev target)");
+    return;
+  }
 
   if (r.status >= 300 && r.status < 400) {
     throw new Error("redirect");
