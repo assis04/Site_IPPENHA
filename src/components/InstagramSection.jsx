@@ -1,6 +1,10 @@
 import { InstagramLogoIcon } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
-import { useInstagramFeed } from "../hooks/useInstagramFeed";
+import {
+  useInstagramFeed,
+  INSTAGRAM_MAX_VISIBLE,
+  INSTAGRAM_PAGE_SIZE,
+} from "../hooks/useInstagramFeed";
 import { INSTAGRAM_PROFILE_URL } from "../data/constants";
 import { useCookieConsent } from "../context/CookieConsentContext";
 
@@ -12,6 +16,9 @@ export default function InstagramSection({ className = "" }) {
   const { allowThirdParty } = useCookieConsent();
   const { posts, loading, error, displayedCount, setDisplayedCount, retry } =
     useInstagramFeed({ enabled: allowThirdParty });
+
+  const visibleCap = Math.min(INSTAGRAM_MAX_VISIBLE, posts.length);
+  const canLoadMore = displayedCount < visibleCap;
 
   return (
     <section
@@ -86,12 +93,20 @@ export default function InstagramSection({ className = "" }) {
             </div>
 
             <div className="flex justify-center mt-8">
-              {displayedCount < posts.length ? (
+              {canLoadMore ? (
                 <button
                   type="button"
-                  onClick={() => setDisplayedCount((n) => Math.min(n + 6, posts.length))}
+                  onClick={() =>
+                    setDisplayedCount((n) =>
+                      Math.min(
+                        n + INSTAGRAM_PAGE_SIZE,
+                        INSTAGRAM_MAX_VISIBLE,
+                        posts.length
+                      )
+                    )
+                  }
                   className="cursor-pointer bg-transparent text-black border border-black px-8 py-3 rounded-3xl font-medium hover:bg-black/5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#0F715C] focus:ring-offset-2"
-                  aria-label="Carregar mais 6 posts do Instagram"
+                  aria-label={`Carregar mais ${INSTAGRAM_PAGE_SIZE} posts do Instagram`}
                 >
                   Ver mais
                 </button>

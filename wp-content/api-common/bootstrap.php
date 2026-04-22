@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Bootstrap centralizado — carrega WordPress e fornece utilitários
  * compartilhados entre TODAS as APIs do site (proxies públicos e consent).
@@ -11,8 +13,6 @@
  *   - Preflight OPTIONS (com/sem credentials)
  *   - Rate limit por IP via transients WordPress
  */
-
-declare(strict_types=1);
 
 if (!defined('ABSPATH')) {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php';
@@ -29,18 +29,17 @@ const IPPENHA_PROD_ORIGINS = [
     'https://www.ippenha.com.br',
 ];
 
-const IPPENHA_DEV_ORIGINS = [
-    'http://localhost:5173',
-    'http://localhost:4173',
-];
+/**
+ * Vite / preview: apenas http em loopback (qualquer porta).
+ */
+function ippenha_is_local_dev_origin(string $origin): bool
+{
+    return (bool) preg_match('#^http://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$#', $origin);
+}
 
 function ippenha_allowed_origins(): array
 {
-    $origins = IPPENHA_PROD_ORIGINS;
-    if (defined('WP_DEBUG') && WP_DEBUG) {
-        $origins = array_merge($origins, IPPENHA_DEV_ORIGINS);
-    }
-    return $origins;
+    return IPPENHA_PROD_ORIGINS;
 }
 
 /* ================================================================
@@ -58,7 +57,13 @@ function ippenha_resolve_origin(): ?string
         return null;
     }
     $origin = rtrim($origin, '/');
-    return in_array($origin, ippenha_allowed_origins(), true) ? $origin : null;
+    if (in_array($origin, ippenha_allowed_origins(), true)) {
+        return $origin;
+    }
+    if (ippenha_is_local_dev_origin($origin)) {
+        return $origin;
+    }
+    return null;
 }
 
 /* ================================================================
